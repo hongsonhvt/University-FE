@@ -1,0 +1,68 @@
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+  }
+  
+  .sidebar li {
+    width: 100%;
+    cursor: pointer;
+    height: 50px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 0;
+  }
+  
+  .sidebar li:hover {
+    background-color: #f6f6f6;
+  }
+  
+  .expanded {
+    color: #ff5722; /* Màu cho mục đã mở rộng */
+    width: 100%;
+    cursor: pointer;
+    height: 50px;
+    padding-top: 15px;
+    padding-right: 0;
+  }
+  
+  .sub-menu {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  .content-navbar {
+    color: #7c7b7b;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .content-navbar-1 {
+    color: #7c7b7b;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10px;
+  }
+  .icon-navbar {
+    color: #7c7b7b;
+    font-size: 20px;
+    padding-right: 10px;
+  }
+  
+  .more-option{
+      margin-left: 15px;
+      margin-top: 30px;
+      padding-top: 10 !important;
+  }
+  .more-option-1{
+      margin-left: 15px;
+      padding-top: 10 !important;
+  }
+
+  .nav-link-custom{
+    color: #7c7b7b;
+    font-size: 20px;
+    font-weight: 400;
+  }

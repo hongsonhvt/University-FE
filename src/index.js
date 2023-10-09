@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { registerLicense } from '@syncfusion/ej2-base';
+
+
+
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NHaF5cXmVCf1JpQnxbf1xzZFJMYlxbRHFPMyBoS35RdURjWXZedHZQQ2dZWERw');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+      <App />
 );
 
 // If you want to start measuring performance in your app, pass a function
