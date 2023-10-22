@@ -2,7 +2,7 @@ import React from 'react'
 import "./Header.css"
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
-import { AiOutlineDown } from "react-icons/ai";
+
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
         </div>
         <div className="HeaderContent">
           <div className="container_header">
-              <i class="icon_menu">
+              <i className="icon_menu">
                   <AiOutlineMenu/>
               </i>
               {/* <div className="navContent">
@@ -31,15 +31,13 @@ const Header = () => {
       </div>
       <div className="header-right">
         <div className="User-information">
-          <i class="icon_menu-user">
+          <i className="icon_menu-user">
             <AiOutlineUser/>
           </i>
           <div className="user_name">
             <h3>GCH2001.NHSon</h3>
           </div>
-          <i className="icon_menu-down">
-            <AiOutlineDown/>
-          </i>
+          
         </div>
       </div>
     </div>

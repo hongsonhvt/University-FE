@@ -32,8 +32,8 @@
   }
   
   .box-courseFees {
-    width: 230px;
-    height: 65px;
+    width: 290px;
+    height: 100px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 6px;
@@ -107,7 +107,7 @@
   }
   
   .image-container {
-    width: 71%;
+    width: 74.5%;
     padding: 20px; /* 20px padding xung quanh ảnh */
     float: left;
     background-color: white;
@@ -120,12 +120,13 @@
   }
   
   .International {
-    width: 19.5%;
+    width: 23%;
     background-color: white;
     float: right;
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 6px;
+    padding-top: 15px;
   }
   .International li {
     width: 100%;
@@ -139,6 +140,7 @@
   }
   .percent {
     float: right;
+    display: flex;
   }
   .Student-bar {
     height: 4px;
@@ -226,7 +228,8 @@
     -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     border-radius: 100%;
-    margin-top: -60px;
+    margin-top: -59px;
+  margin-left: 105px;
   }
   
   .school-single-title :hover{
@@ -235,6 +238,10 @@
   
   .school-single-title {
     cursor: pointer;
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #006df0;
   }
   
   .follow-cart{
@@ -244,6 +251,7 @@
       display: inline-block;
       padding: 5px 20px;
       border-radius: 3px;
+      margin-top: 20px;
   }
   
   .single-review-school h3{
@@ -275,8 +283,9 @@
   }
   .student-ratting{
     text-align: right;
-      margin-left: auto;
-      margin-top: 5px;
+    margin-left: auto;
+    margin-top: 5px;
+    display: flex;
   }
   
   .star-ratting{
@@ -324,4 +333,5 @@
     font-size: 14px;
     margin: 0 5px 0 5px;
     cursor: pointer;
+    height: 31px;
   }

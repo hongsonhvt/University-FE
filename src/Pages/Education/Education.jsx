@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./Education.css"
 import { AiOutlineSearch } from "react-icons/ai"
 import Images from '../../Images/Images'
@@ -7,8 +7,40 @@ import "../../Images/Images"
 import { FaStar } from "react-icons/fa6"
 import { FaHeart } from "react-icons/fa6"
 import { FaShare } from "react-icons/fa6";
+import axios from 'axios'
+import { useSelector,useDispatch } from 'react-redux'
+import { updateUser } from '../../redux/feature/useSlice'
+import { updateToken } from '../../redux/feature/tokenSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Education = () => {
+
+    // const dispatch = useDispatch()
+    // const navigate = useNavigate();
+   
+    // const token = useSelector((store) => store);
+ 
+    //   const getDataUser = async () => {
+    //     try {
+    //         const response = await axios.get("http://localhost:5123/auth", {
+    //             headers: {
+    //                 Authorization: `Bearer ${token?.token?.token}`,
+    //             },
+    //         })
+
+    //         console.log('response',response);
+    //         dispatch( updateUser( response.data.data ) )
+            
+    //     } catch (e) {
+    //         // dispatch( updateUser( response.data.data ) )
+    //         dispatch( updateToken( '' ) )
+    //         navigate("/login");
+    //     }
+    //   };
+    //   useEffect(() => {
+    //     getDataUser();
+    //   }, []);
+    
   return (
     <div className="container">
       <div className="search-bar">                    
@@ -73,8 +105,8 @@ const Education = () => {
         </div>
       </div>
       <div className="container-main-img">
-        <div class="container-main-image">
-          <div class="image-container" >
+        <div className="container-main-image">
+          <div className="image-container" >
               <img src={Images.univer} alt="" />
           </div>
           <div className="International">

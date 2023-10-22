@@ -56,16 +56,4 @@
 }
 .course-fluid{
 
-}/* Course.css */
-.course-des p .Status-grade {
-    color: green; /* Màu mặc định cho trạng thái khác */
 }
-
-.course-des p .Status-grade.Studying {
-    color: blue; /* Màu cho trạng thái "Studying" */
-}
-
-.course-des p .Status-grade.Fail {
-    color: red; /* Màu cho trạng thái "Fail" */
-}
-  

@@ -10,8 +10,34 @@ import {
     Stack,
     Image,
   } from '@chakra-ui/react'
+import axios from 'axios';
+  import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+  import { useNavigate } from 'react-router-dom'
+import { updateToken } from '../../redux/feature/tokenSlice';
   
   export default function SplitScreen() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleLogin = async () => {
+      console.log('Login with your email:', username, 'and Password:', password);
+
+      const res = await axios.post("http://localhost:5123/auth/login"  , {
+        username:username,
+        password:password
+      })
+      console.log('res',res.data.data.token);
+      dispatch(updateToken( res.data.data.token))
+
+     
+      navigate('/education')
+    }
+
+  
+   
+
     return (
       <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
         <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -19,11 +45,13 @@ import {
             <Heading fontSize={'2xl'}>Sign in to your account</Heading>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" value={username}
+          onChange={(e) => setUsername(e.target.value)} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" value={password}
+          onChange={(e) => setPassword(e.target.value)} />
             </FormControl>
             <Stack spacing={6}>
               <Stack
@@ -32,7 +60,7 @@ import {
                 justify={'space-between'}>
                 <Checkbox>Remember me</Checkbox>
               </Stack>
-              <Button colorScheme={'blue'} variant={'solid'}>
+              <Button colorScheme={'blue'} variant={'solid'} onClick={handleLogin}>
                 Sign in
               </Button>
             </Stack>

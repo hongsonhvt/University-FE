@@ -33,7 +33,7 @@
     justify-content: space-between;
   }
   .professor{
-    width: 23%;
+    width: 25%;
     float: left;
     position: relative;
     min-height: 1px;
@@ -42,6 +42,8 @@
   .professor-information{
     padding: 20px;
     background: #fff;
+    margin-bottom: 20px;
+    border-radius: 6px;
   }
   .intro-professor{
     padding: 0;
@@ -72,7 +74,10 @@
   }
   .social-media svg{
     padding-top: 6px;
-    padding-right: 1px;
+
+    font-size: 20px;
+    padding-left: 5px;
+
   }
   .intro-professor img{
     border-radius: 50%;
