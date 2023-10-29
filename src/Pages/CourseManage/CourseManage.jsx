@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CourseManage.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Select } from '@chakra-ui/react';
@@ -8,60 +8,60 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter, 
+  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
+  FormControl,
   FormLabel,
   Input,
-  FormControl,
+  Button as ChakraButton,
+  Button,
+  HStack
 } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 function CourseManage() {
-  const [courses, setCourses] = useState([
-    {
-      courseId: "1",
-      courseName: "AI",
-      courseStart: "02/02/2001",
-      courseEnd: "02/02/2022",
-      courseCode: "COMP1243",
-      program: "Information Technology"
-    },
-    {
-      courseId: "2",
-      courseName: "AI",
-      courseStart: "02/02/2001",
-      courseEnd: "02/02/2022",
-      courseCode: "COMP1243",
-      program: "Business Administration	"
-    },
-    // Thêm dữ liệu khóa học khác ở đây
-  ]);
+  const token = useSelector((store) => store);
+  const [courses, setCourses] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
   
   const [newCourse, setNewCourse] = useState({
     courseId: "",
     courseName: "",
-    courseStart: "",
-    courseEnd: "",
-    courseCode: "",
-    program: "" 
   });
 
   // State to store the selected course for detail modal
   const [selectedCourse, setSelectedCourse] = useState(null);
 
+  const getCourses = async () => {
+    try {
+      const response = await axios.get("http://localhost:5123/Course", {
+        headers: {
+          Authorization: `Bearer ${token?.token?.token}`,
+        },
+      });
+
+      console.log('response', response);
+      setCourses(response.data.data);
+    } catch (e) {
+      // dispatch( updateUser( response.data.data ) )
+      // dispatch( updateToken( '' ) )
+      // navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    getCourses();
+  }, []);
+
   const handleAddCourse = () => {
     setNewCourse({
       courseId: "",
       courseName: "",
-      courseStart: "",
-      courseEnd: "",
-      courseCode: "",
-      program: "" 
     });
+    setSelectedCourse(null);
     onOpen();
   };
 
@@ -69,17 +69,40 @@ function CourseManage() {
     onClose();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setCourses([...courses, newCourse]);
-    onClose();
+
+    try {
+      const response = await axios.post("http://localhost:5123/Course", newCourse, {
+        headers: {
+          Authorization: `Bearer ${token?.token?.token}`,
+        },
+      });
+
+      // Cập nhật danh sách chương trình và đóng modal
+      setCourses([...courses, response.data]);
+      onClose();
+    } catch (error) {
+      console.error("Error adding course:", error);
+    }
   };
 
-  const handleDelete = (courseId) => {
-    const updatedCourses = courses.filter(
-      (course) => course.courseId !== courseId
-    );
-    setCourses(updatedCourses);
+  const handleDeleteCourse = async (courseId) => {
+    if (window.confirm("Are you sure you want to delete this courrse?")) {
+      try {
+        await axios.delete(`http://localhost:5123/course${courseId}`, {
+          headers: {
+            Authorization: `Bearer ${token?.token?.token}`,
+          },
+        });
+  
+        // Loại bỏ chương trình đã xóa khỏi danh sách
+        const updatedCourses = courses.filter((course) => course.id !== courseId);
+        setCourses(updatedCourses);
+      } catch (error) {
+        console.error("Error deleting course:", error);
+      }
+    }
   };
 
   // Function to open the detail modal and set the selected course
@@ -87,6 +110,24 @@ function CourseManage() {
     setSelectedCourse(course);
     onOpen();
   };
+
+  const handleEdit = async () => {
+    const payload = {
+      courseId: selectedCourse.courseId,
+      name: selectedCourse.name
+    }
+  
+
+    const res = await axios.put(`http://localhost:5123/Course/${selectedCourse.id}`,payload,{
+      headers: {
+        Authorization: `Bearer ${token?.token?.token}`,
+      },
+    })
+    console.log('res',res);
+    
+    getCourses()
+    onClose()
+  }
 
   return (
     <div className="App">
@@ -98,12 +139,13 @@ function CourseManage() {
           </i>
         </div>
         <div className="add-btn">
-          <Button onClick={handleAddCourse} colorScheme='blue'>Add Course</Button>
+          <ChakraButton onClick={handleAddCourse} colorScheme="blue">
+            Add Course
+          </ChakraButton>
         </div>
       </div>
       <Modal
         initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
       >
@@ -116,14 +158,15 @@ function CourseManage() {
           {selectedCourse ? (
             <ModalBody pb={6}>
               <FormControl>
-                <FormLabel htmlFor="courseId">Course ID</FormLabel>
+                <FormLabel>Course ID</FormLabel>
                 <Input 
-                  ref={initialRef}
                   type="text"
                   id="courseId"
                   name="courseId"
                   value={selectedCourse.courseId}
-                  readOnly
+                  onChange={(e) =>
+                    setSelectedCourse({ ...selectedCourse, courseId: e.target.value })
+                  }
                 />
               </FormControl>
 
@@ -134,54 +177,32 @@ function CourseManage() {
                   id="courseName"
                   name="courseName"
                   value={selectedCourse.courseName}
-                  readOnly
-                />
-              </FormControl>
-
-              <FormControl>
-                <FormLabel htmlFor="courseStart">Course Start</FormLabel>
-                <Input 
-                  type="date"
-                  id="courseStart"
-                  name="courseStart"
-                  value={selectedCourse.courseStart}
-                  readOnly
+                  onChange={(e) =>
+                    setSelectedCourse({
+                      ...selectedCourse,
+                      name: e.target.value,
+                    })
+                  }
                 />
               </FormControl>
               
               <FormControl mt={4}>
-                <FormLabel htmlFor="courseEnd">Course End</FormLabel>
-                <Input 
-                  type="date"
-                  id="courseEnd"
-                  name="courseEnd"
-                  value={selectedCourse.courseEnd}
-                  readOnly
-                />
-              </FormControl>
-
-              <FormControl>
-                <FormLabel htmlFor="courseCode">Course Code</FormLabel>
-                <Input 
-                  type="text"
-                  id="courseCode"
-                  name="courseCode"
-                  value={selectedCourse.courseCode}
-                  readOnly
-                />
-              </FormControl>
-
-              <FormControl mt={4}>
                 <FormLabel htmlFor="program">Program</FormLabel>
                 <Select
                   value={selectedCourse.program}
-                  isReadOnly
+               
                 >
                   <option value="Information Technology">Information Technology</option>
                   <option value="Graphic Design">Graphic Design</option>
                   <option value="Business Administration">Business Administration</option>
                 </Select>
               </FormControl>
+              <ModalFooter>
+                <ChakraButton colorScheme="blue" mr={3} type="submit" onClick={handleEdit}>
+                  Save
+                </ChakraButton>
+                <ChakraButton onClick={onClose}>Cancel</ChakraButton>
+              </ModalFooter>
             </ModalBody>
           ) : (
             <form onSubmit={handleFormSubmit}>
@@ -194,7 +215,7 @@ function CourseManage() {
                     id="courseId"
                     name="courseId"
                     value={newCourse.courseId}
-                    placeholder="01"
+                    placeholder="COMP101"
                     onChange={(e) =>
                       setNewCourse({ ...newCourse, courseId: e.target.value })
                     } 
@@ -215,46 +236,6 @@ function CourseManage() {
                   />
                 </FormControl>
 
-                <FormControl>
-                  <FormLabel htmlFor="courseStart">Course Start</FormLabel>
-                  <Input 
-                    type="date"
-                    id="courseStart"
-                    name="courseStart"
-                    value={newCourse.courseStart}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, courseStart: e.target.value })
-                    }
-                  />
-                </FormControl>
-                
-                <FormControl mt={4}>
-                  <FormLabel htmlFor="courseEnd">Course End</FormLabel>
-                  <Input 
-                    type="date"
-                    id="courseEnd"
-                    name="courseEnd"
-                    value={newCourse.courseEnd}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, courseEnd: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl>
-                  <FormLabel htmlFor="courseCode">Course Code</FormLabel>
-                  <Input 
-                    type="text"
-                    id="courseCode"
-                    name="courseCode"
-                    value={newCourse.courseCode}
-                    placeholder="COMP1985"
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, courseCode: e.target.value })
-                    } 
-                  />
-                </FormControl>
-
                 <FormControl mt={4}>
                   <FormLabel htmlFor="program">Program</FormLabel>
                   <Select
@@ -270,10 +251,10 @@ function CourseManage() {
                 </FormControl>
               </ModalBody>
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} type="submit">
+                <ChakraButton colorScheme="blue" mr={3} type="submit">
                   Save
-                </Button> 
-                <Button onClick={onClose}>Cancel</Button>
+                </ChakraButton>
+                <ChakraButton onClick={onClose}>Cancel</ChakraButton>
               </ModalFooter>
             </form>
           )}
@@ -282,37 +263,39 @@ function CourseManage() {
       <table className="teacher-table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>STT</th>
+            <th>Course ID</th>
             <th>Course Name</th>
-            <th>Course Start</th>
-            <th>Course End</th>
-            <th>Course Code</th>
-            <th>Program</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {courses.map((course) => (
+          {courses.map((course, idx) => (
             <tr key={course.courseId}>
+              <td>{idx + 1}</td>
               <td>{course.courseId}</td>
-              <td>{course.courseName}</td>
-              <td>{course.courseStart}</td>
-              <td>{course.courseEnd}</td>
-              <td>{course.courseCode}</td>
-              <td>{course.program}</td>
+              <td>{course.name}</td>
               <td>
-                <button
-                  onClick={() => handleDelete(course.courseId)}
-                  className="delete-teacher"
-                >
-                  Delete
-                </button>
-                <button
-                  onClick={() => handleOpenDetail(course)}
-                  className="detail-course"
-                >
-                  Detail
-                </button>
+                <HStack spacing="15px" justify="center">
+                  {/* <Button
+                    onClick={() => handleOpenDetail(course)}
+                    colorScheme="blue"
+                  >
+                    Detail
+                  </Button> */}
+                  <Button
+                    onClick={() => handleOpenDetail(course)}
+                    colorScheme="cyan"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() => handleDeleteCourse(course.courseId)}
+                    colorScheme="red"
+                  >
+                    Delete
+                  </Button>
+                </HStack>
               </td>
             </tr>
           ))}

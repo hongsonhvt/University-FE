@@ -141,6 +141,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     { name: 'Teacher', icon: AiTwotoneFileImage, navigateTo: '/teacher' },
     { name: 'CourseTeacher', icon: AiTwotoneFileImage, navigateTo: '/course-teacher' },
     { name: 'ProgramManage', icon: AiTwotoneFileImage, navigateTo: '/program-manage' },
+    { name: 'ClassManage', icon: AiTwotoneFileImage, navigateTo: '/class-manage' },
   ];
 
   // Filter LinkItems based on the role
@@ -152,7 +153,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
         link.name === 'TeacherManage' ||
         link.name === 'EventManage' ||
         link.name === 'CourseManage' ||
-        link.name === 'ProgramManage' 
+        link.name === 'ProgramManage' ||
+        link.name === 'ClassManage'
       );
     } else if (role === 'Teacher') {
       return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./ProgramManage.css";
+import "./ClassManage.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import {
   Modal,
@@ -20,20 +20,20 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-function ProgramManage() {
+function ClassManage() {
   const token = useSelector((store) => store);
-  const [programs, setPrograms] = useState([]);
+  const [mclasss, setMClasss] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
 
-  const [newProgram, setNewProgram] = useState({
-    programId: "",
-    programName: "",
+  const [newMClass, setNewMClass] = useState({
+    mclassId: "",
+    mclassName: "",
   });
 
-  const isProgramNameExists = async (programName) => {
+  const isMClassNameExists = async (mclassName) => {
     try {
-      const response = await axios.get(`http://localhost:5123/program?programName=${programName}`, {
+      const response = await axios.get(`http://localhost:5123/ManagentClass?mclassName=${mclassName}`, {
         headers: {
           Authorization: `Bearer ${token?.token?.token}`,
         },
@@ -41,43 +41,43 @@ function ProgramManage() {
 
       return response.data.data.length > 0;
     } catch (error) {
-      console.error("Error checking program name:", error);
+      console.error("Error checking class name:", error);
       return false;
     }
   };
 
-  const getPrograms = async () => {
+  const getMClasss = async () => {
     try {
-      const response = await axios.get("http://localhost:5123/Program", {
+      const response = await axios.get("http://localhost:5123/ManagementClass", {
         headers: {
           Authorization: `Bearer ${token?.token?.token}`,
         },
       });
 
-      setPrograms(response.data.data);
+      setMClasss(response.data.data);
     } catch (e) {
-      console.error("Error getting programs:", e);
+      console.error("Error getting Classes:", e);
     }
   };
 
   useEffect(() => {
-    getPrograms();
+    getMClasss();
   }, []);
 
-  const handleAddProgram = () => {
-    setNewProgram({
-      programId: "",
-      programName: "",
+  const handleAddMClass = () => {
+    setNewMClass({
+      mclassId: "",
+      mclassName: "",
     });
-    setSelectedProgram(null);
+    setSelectedMClass(null);
     onOpen();
   };
 
-  const handleSaveProgram = () => {
-    if (selectedProgram) {
+  const handleSaveMClass = () => {
+    if (selectedMClass) {
       handleEdit();
     } else {
-      handleAddProgram();
+      handleAddMClass();
     }
   };
   
@@ -87,67 +87,67 @@ function ProgramManage() {
   };
 
   const handleFormSubmit = async () => {
-    const isNameExists = await isProgramNameExists(newProgram.programName);
+    const isNameExists = await isMClassNameExists(newMClass.mclassNameName);
 
     if (isNameExists) {
-      alert("Program name already exists. Please choose a different name.");
+      alert("Class name already exists. Please choose a different name.");
     } else {
       try {
-        const response = await axios.post("http://localhost:5123/program", newProgram, {
+        const response = await axios.post("http://localhost:5123/ManagementClass", newMClass, {
           headers: {
             Authorization: `Bearer ${token?.token?.token}`,
           },
         });
 
-        setPrograms([...programs, response.data.data]);
+        setMClasss([...mclasss, response.data.data]);
         onClose();
       } catch (error) {
-        console.error("Error adding program:", error);
+        console.error("Error adding class:", error);
       }
     }
   };
 
-  const handleDelete = async (programId) => {
-    if (window.confirm("Are you sure you want to delete this program?")) {
+  const handleDelete = async (mclassId) => {
+    if (window.confirm("Are you sure you want to delete this class?")) {
       try {
-        await axios.delete(`http://localhost:5123/program/${programId}`, {
+        await axios.delete(`http://localhost:5123/ManagementClass/${mclassId}`, {
           headers: {
             Authorization: `Bearer ${token?.token?.token}`,
           },
         });
 
-        const updatedPrograms = programs.filter((program) => program.programId !== programId);
-        setPrograms(updatedPrograms);
+        const updatedMClasss = mclasss.filter((mclass) => mclass.mclassId !== mclassId);
+        setMClasss(updatedMClasss);
       } catch (error) {
-        console.error("Error deleting program:", error);
+        console.error("Error deleting class:", error);
       }
     }
   };
 
-  const [selectedProgram, setSelectedProgram] = useState(null);
+  const [selectedMClass, setSelectedMClass] = useState(null);
 
-  const handleOpenDetail = (program) => {
-    setSelectedProgram(program);
+  const handleOpenDetail = (mclass) => {
+    setSelectedMClass(mclass);
     onOpen();
   };
 
   const handleEdit = async () => {
     const payload = {
-      programId: selectedProgram.programId,
-      name: selectedProgram.name
+      mclassId: selectedMClass.mclassId,
+      name: selectedMClass.name
     };
 
     try {
-      const res = await axios.put(`http://localhost:5123/Program/${selectedProgram.id}`, payload, {
+      const res = await axios.put(`http://localhost:5123/ManagementClass/${selectedMClass.id}`, payload, {
         headers: {
           Authorization: `Bearer ${token?.token?.token}`,
         },
       });
       console.log('res', res);
-      getPrograms();
+      getMClasss();
       onClose();
     } catch (error) {
-      console.error("Error editing program:", error);
+      console.error("Error editing class:", error);
     }
   };
 
@@ -161,8 +161,8 @@ function ProgramManage() {
           </i>
         </div>
         <div className="add-btn">
-          <ChakraButton onClick={handleAddProgram} colorScheme="blue">
-            Add Program
+          <ChakraButton onClick={handleAddMClass} colorScheme="blue">
+            Add Class
           </ChakraButton>
         </div>
       </div>
@@ -170,33 +170,33 @@ function ProgramManage() {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            {selectedProgram ? "Program Details" : "Create Program"}
+            {selectedMClass ? "Class Details" : "Create Class"}
           </ModalHeader>
           <ModalCloseButton />
-          {selectedProgram ? (
+          {selectedMClass ? (
             <ModalBody pb={6}>
               <FormControl>
-                <FormLabel>Program ID:</FormLabel>
+                <FormLabel>Class ID:</FormLabel>
                 <Input
                   type="text"
-                  id="programId"
-                  name="programId"
-                  value={selectedProgram.programId}
+                  id="mclassId"
+                  name="mclassId"
+                  value={selectedMClass.mclassId}
                   onChange={(e) =>
-                    setSelectedProgram({ ...selectedProgram, programId: e.target.value })
+                    setSelectedMClass({ ...selectedMClass, mclassId: e.target.value })
                   }
                 />
               </FormControl>
               <FormControl mt={4}>
-                <FormLabel>Program Name:</FormLabel>
+                <FormLabel>Class Name:</FormLabel>
                 <Input
                   type="text"
-                  id="programName"
-                  name="programName"
-                  value={selectedProgram.name}
+                  id="mclassName"
+                  name="mclassName"
+                  value={selectedMClass.name}
                   onChange={(e) =>
-                    setSelectedProgram({
-                      ...selectedProgram,
+                    setSelectedMClass({
+                      ...selectedMClass,
                       name: e.target.value,
                     })
                   }
@@ -213,38 +213,38 @@ function ProgramManage() {
             <form onSubmit={handleFormSubmit}>
               <ModalBody pb={6}>
                 <FormControl>
-                  <FormLabel>Program ID:</FormLabel>
+                  <FormLabel>Class ID:</FormLabel>
                   <Input
                     ref={initialRef}
                     type="text"
-                    id="programId"
-                    name="programId"
-                    value={newProgram.programId}
+                    id="mclassId"
+                    name="mclassId"
+                    value={newMClass.mclassId}
                     placeholder="IT"
                     onChange={(e) =>
-                      setNewProgram({ ...newProgram, programId: e.target.value })
+                      setNewMClass({ ...newMClass, mclassId: e.target.value })
                     }
                   />
                 </FormControl>
                 <FormControl mt={4}>
-                  <FormLabel>Program Name:</FormLabel>
+                  <FormLabel>Class Name:</FormLabel>
                   <Input
                     type="text"
-                    id="programName"
-                    name="programName"
-                    value={newProgram.programName}
+                    id="mclassName"
+                    name="mclassName"
+                    value={newMClass.mclassName}
                     placeholder="Information Technology"
                     onChange={(e) =>
-                      setNewProgram({
-                        ...newProgram,
-                        programName: e.target.value,
+                      setNewMClass({
+                        ...newMClass,
+                        mclassName: e.target.value,
                       })
                     }
                   />
                 </FormControl>
               </ModalBody>
               <ModalFooter>
-                <ChakraButton colorScheme="blue" mr={3} onClick={handleSaveProgram}>
+                <ChakraButton colorScheme="blue" mr={3} onClick={handleSaveMClass}>
                   Save
                 </ChakraButton>
                 <ChakraButton onClick={onClose}>Cancel</ChakraButton>
@@ -258,26 +258,26 @@ function ProgramManage() {
           <tr>
             <th>STT</th>
             <th>ID</th>
-            <th>Program Name</th>
+            <th>Class Name</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {programs.map((program, idx) => (
-            <tr key={program.programId}>
+          {mclasss.map((mclass, idx) => (
+            <tr key={mclass.mclassId}>
               <td>{idx + 1}</td>
-              <td>{program.programId}</td>
-              <td>{program.name}</td>
+              <td>{mclass.mclassId}</td>
+              <td>{mclass.name}</td>
               <td>
                 <HStack spacing="15px" justify="center">
                   <Button
-                    onClick={() => handleOpenDetail(program)}
+                    onClick={() => handleOpenDetail(mclass)}
                     colorScheme="cyan"
                   >
                     Edit
                   </Button>
                   <Button
-                    onClick={() => handleDelete(program.programId)}
+                    onClick={() => handleDelete(mclass.mclassId)}
                     colorScheme="red"
                   >
                     Delete
@@ -292,4 +292,4 @@ function ProgramManage() {
   );
 }
 
-export default ProgramManage;
+export default ClassManage;

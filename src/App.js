@@ -30,6 +30,7 @@ import { updateUser } from "./redux/feature/useSlice";
 // import Course from "./Pages/Course/Course";
 import EventManage from "./Pages/EventManage/EventManage";
 import ProgramManage from "./Pages/ProgramManage/ProgramManage";
+import ClassManage from "./Pages/ClassManage/ClassManage";
 
 function App() {
   const dispatch = useDispatch();
@@ -137,6 +138,16 @@ function App() {
               <ProgramManage />
             ) : (
               <Navigate to={"/program-manage"} />
+            ),
+        },
+        {
+          path: "class-manage",
+          element: <ClassManage />,
+          element:
+            role === "Admin" ? (
+              <ClassManage />
+            ) : (
+              <Navigate to={"/class-manage"} />
             ),
         },
 
