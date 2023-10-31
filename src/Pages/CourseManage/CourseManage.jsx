@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./CourseManage.css";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Select } from '@chakra-ui/react';
-import { useDisclosure } from '@chakra-ui/react';
 import {
   Modal,
   ModalOverlay,
@@ -16,118 +13,132 @@ import {
   Input,
   Button as ChakraButton,
   Button,
-  HStack
-} from '@chakra-ui/react';
+  HStack,
+} from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 function CourseManage() {
   const token = useSelector((store) => store);
   const [courses, setCourses] = useState([]);
+  const [programs, setPrograms] = useState([]); // Define programs state
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
-  
-  const [newCourse, setNewCourse] = useState({
-    courseId: "",
-    courseName: "",
-  });
-
-  // State to store the selected course for detail modal
+  const [courseId, setCourseId] = useState('');
+  const [courseName, setCourseName] = useState('');
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedProgram, setSelectedProgram] = useState(''); // Added state for program selection
+
+  const getPrograms = async () => {
+    try {
+      const response = await axios.get("http://localhost:5123/Program");
+      setPrograms(response.data.data);
+    } catch (error) {
+      console.error("Error fetching programs:", error);
+    }
+  };
 
   const getCourses = async () => {
     try {
       const response = await axios.get("http://localhost:5123/Course", {
         headers: {
-          Authorization: `Bearer ${token?.token?.token}`,
+          Authorization: `Bearer ${token?.token?.token}`, // Add the 'token' variable
         },
       });
 
-      console.log('response', response);
-      setCourses(response.data.data);
+      setPrograms(response.data.data);
     } catch (e) {
-      // dispatch( updateUser( response.data.data ) )
-      // dispatch( updateToken( '' ) )
-      // navigate("/login");
+      console.error("Error getting programs:", e);
     }
   };
 
   useEffect(() => {
-    getCourses();
+    getPrograms();
+    getCourses(); // Fetch courses when the component mounts
   }, []);
 
-  const handleAddCourse = () => {
-    setNewCourse({
-      courseId: "",
-      courseName: "",
-    });
-    setSelectedCourse(null);
-    onOpen();
+  const handleAddCourse = async () => {
+    try {
+      const response = await axios.post('http://localhost:5123/Course', {
+        courseId: courseId, // Use the courseId state
+        courseName: courseName, // Use the courseName state
+        program: selectedProgram, // Use the selected program
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token?.token?.token}`, // Add the 'token' variable
+        },
+      });
+  
+      if (response.status === 200) {
+        getCourses();
+        setCourseId('');
+        setCourseName('');
+        setSelectedCourse(null);
+        setSelectedProgram(''); // Clear the selected program
+        onClose();
+      }
+    } catch (error) {
+      console.error('Error adding course:', error);
+    }
   };
+  
 
   const handleCancel = () => {
     onClose();
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post("http://localhost:5123/Course", newCourse, {
-        headers: {
-          Authorization: `Bearer ${token?.token?.token}`,
-        },
-      });
-
-      // Cập nhật danh sách chương trình và đóng modal
-      setCourses([...courses, response.data]);
-      onClose();
-    } catch (error) {
-      console.error("Error adding course:", error);
+  const handleSaveCourse = () => {
+    if (selectedCourse) {
+      handleEdit();
+    } else {
+      handleAddCourse();
     }
   };
 
-  const handleDeleteCourse = async (courseId) => {
-    if (window.confirm("Are you sure you want to delete this courrse?")) {
+  const handleEdit = async () => {
+    const payload = {
+      courseId: selectedCourse.courseId,
+      courseName: selectedCourse.courseName,
+      program: selectedProgram, // Use the selected program
+    };
+
+    try {
+      if (selectedCourse.id) {
+        const response = await axios.put(`http://localhost:5123/Course/${selectedCourse.id}`, payload);
+        if (response.status === 200) {
+          getCourses();
+          onClose();
+        }
+      } else {
+        console.error("Selected course does not have an ID.");
+      }
+    } catch (error) {
+      console.error("Error editing course:", error);
+    }
+  };
+
+  const handleDeleteCourse = async (id) => {
+    if (window.confirm("Are you sure you want to delete this course?")) {
       try {
-        await axios.delete(`http://localhost:5123/course${courseId}`, {
-          headers: {
-            Authorization: `Bearer ${token?.token?.token}`,
-          },
-        });
-  
-        // Loại bỏ chương trình đã xóa khỏi danh sách
-        const updatedCourses = courses.filter((course) => course.id !== courseId);
-        setCourses(updatedCourses);
+        const response = await axios.delete(`http://localhost:5123/Course/${id}`);
+        if (response.status === 200) {
+          getCourses();
+          onClose();
+        }
       } catch (error) {
         console.error("Error deleting course:", error);
       }
     }
   };
 
-  // Function to open the detail modal and set the selected course
   const handleOpenDetail = (course) => {
     setSelectedCourse(course);
+    setSelectedProgram(course.program); // Set the selected program
     onOpen();
   };
-
-  const handleEdit = async () => {
-    const payload = {
-      courseId: selectedCourse.courseId,
-      name: selectedCourse.name
-    }
-  
-
-    const res = await axios.put(`http://localhost:5123/Course/${selectedCourse.id}`,payload,{
-      headers: {
-        Authorization: `Bearer ${token?.token?.token}`,
-      },
-    })
-    console.log('res',res);
-    
-    getCourses()
-    onClose()
-  }
 
   return (
     <div className="App">
@@ -144,11 +155,7 @@ function CourseManage() {
           </ChakraButton>
         </div>
       </div>
-      <Modal
-        initialFocusRef={initialRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
+      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -158,8 +165,8 @@ function CourseManage() {
           {selectedCourse ? (
             <ModalBody pb={6}>
               <FormControl>
-                <FormLabel>Course ID</FormLabel>
-                <Input 
+                <FormLabel>Course ID:</FormLabel>
+                <Input
                   type="text"
                   id="courseId"
                   name="courseId"
@@ -169,10 +176,9 @@ function CourseManage() {
                   }
                 />
               </FormControl>
-
               <FormControl mt={4}>
-                <FormLabel htmlFor="courseName">Course Name</FormLabel>
-                <Input 
+                <FormLabel>Course Name:</FormLabel>
+                <Input
                   type="text"
                   id="courseName"
                   name="courseName"
@@ -180,83 +186,80 @@ function CourseManage() {
                   onChange={(e) =>
                     setSelectedCourse({
                       ...selectedCourse,
-                      name: e.target.value,
+                      courseName: e.target.value,
                     })
                   }
                 />
               </FormControl>
-              
               <FormControl mt={4}>
-                <FormLabel htmlFor="program">Program</FormLabel>
+                <FormLabel htmlFor="program">Program:</FormLabel>
                 <Select
-                  value={selectedCourse.program}
-               
+                  value={selectedProgram} // Use the selected program
+                  onChange={(e) => setSelectedProgram(e.target.value)}
                 >
-                  <option value="Information Technology">Information Technology</option>
-                  <option value="Graphic Design">Graphic Design</option>
-                  <option value="Business Administration">Business Administration</option>
+                  {programs.map(program => (
+                    <option key={program.id} value={program.name}>
+                      {program.name}
+                    </option>
+                  ))}
                 </Select>
               </FormControl>
               <ModalFooter>
-                <ChakraButton colorScheme="blue" mr={3} type="submit" onClick={handleEdit}>
+                <ChakraButton colorScheme="blue" mr={3} onClick={handleEdit}>
                   Save
                 </ChakraButton>
                 <ChakraButton onClick={onClose}>Cancel</ChakraButton>
               </ModalFooter>
             </ModalBody>
           ) : (
-            <form onSubmit={handleFormSubmit}>
-              <ModalBody pb={6}>
+            <ModalBody pb={6}>
+              <form>
                 <FormControl>
-                  <FormLabel htmlFor="courseId">Course ID</FormLabel>
-                  <Input 
+                  <FormLabel htmlFor="courseId">Course ID:</FormLabel>
+                  <Input
                     ref={initialRef}
                     type="text"
                     id="courseId"
                     name="courseId"
-                    value={newCourse.courseId}
+                    value={courseId}
                     placeholder="COMP101"
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, courseId: e.target.value })
-                    } 
+                    onChange={(e) => setCourseId(e.target.value)}
                   />
                 </FormControl>
 
                 <FormControl mt={4}>
-                  <FormLabel htmlFor="courseName">Course Name</FormLabel>
-                  <Input 
+                  <FormLabel htmlFor="courseName">Course Name:</FormLabel>
+                  <Input
                     type="text"
                     id="courseName"
                     name="courseName"
-                    value={newCourse.courseName}
+                    value={courseName}
                     placeholder="ABC123"
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, courseName: e.target.value })
-                    }
+                    onChange={(e) => setCourseName(e.target.value)}
                   />
                 </FormControl>
 
                 <FormControl mt={4}>
-                  <FormLabel htmlFor="program">Program</FormLabel>
+                  <FormLabel htmlFor="program">Program:</FormLabel>
                   <Select
-                    value={newCourse.program}
-                    onChange={(e) =>
-                      setNewCourse({ ...newCourse, program: e.target.value })
-                    }
+                    value={selectedProgram} // Use the selected program
+                    onChange={(e) => setSelectedProgram(e.target.value)}
                   >
-                    <option value="Information Technology">Information Technology</option>
-                    <option value="Graphic Design">Graphic Design</option>
-                    <option value="Business Administration">Business Administration</option>
+                    {programs.map(program => (
+                      <option key={program.id} value={program.name}>
+                        {program.name}
+                      </option>
+                    ))}
                   </Select>
                 </FormControl>
-              </ModalBody>
+              </form>
               <ModalFooter>
-                <ChakraButton colorScheme="blue" mr={3} type="submit">
+                <ChakraButton colorScheme="blue" mr={3} onClick={handleSaveCourse}>
                   Save
                 </ChakraButton>
                 <ChakraButton onClick={onClose}>Cancel</ChakraButton>
               </ModalFooter>
-            </form>
+            </ModalBody>
           )}
         </ModalContent>
       </Modal>
@@ -266,23 +269,19 @@ function CourseManage() {
             <th>STT</th>
             <th>Course ID</th>
             <th>Course Name</th>
+            <th>Program</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {courses.map((course, idx) => (
-            <tr key={course.courseId}>
+            <tr key={course.id}>
               <td>{idx + 1}</td>
               <td>{course.courseId}</td>
-              <td>{course.name}</td>
+              <td>{course.courseName}</td>
+              <td>{course.program}</td>
               <td>
                 <HStack spacing="15px" justify="center">
-                  {/* <Button
-                    onClick={() => handleOpenDetail(course)}
-                    colorScheme="blue"
-                  >
-                    Detail
-                  </Button> */}
                   <Button
                     onClick={() => handleOpenDetail(course)}
                     colorScheme="cyan"
@@ -290,7 +289,7 @@ function CourseManage() {
                     Edit
                   </Button>
                   <Button
-                    onClick={() => handleDeleteCourse(course.courseId)}
+                    onClick={() => handleDeleteCourse(course.id)}
                     colorScheme="red"
                   >
                     Delete
