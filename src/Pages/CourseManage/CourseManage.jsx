@@ -13,7 +13,7 @@ import {
   Input,
   Button as ChakraButton,
   Button,
-  HStack,
+  HStack
 } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
@@ -48,7 +48,7 @@ function CourseManage() {
         },
       });
 
-      setPrograms(response.data.data);
+      setCourses(response.data.data);
     } catch (e) {
       console.error("Error getting programs:", e);
     }
@@ -62,9 +62,9 @@ function CourseManage() {
   const handleAddCourse = async () => {
     try {
       const response = await axios.post('http://localhost:5123/Course', {
+        name: courseName, // Use the courseName state
         courseId: courseId, // Use the courseId state
-        courseName: courseName, // Use the courseName state
-        program: selectedProgram, // Use the selected program
+        programs: [selectedProgram], // Use the selected program
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ function CourseManage() {
           </i>
         </div>
         <div className="add-btn">
-          <ChakraButton onClick={handleAddCourse} colorScheme="blue">
+          <ChakraButton onClick={onOpen} colorScheme="blue">
             Add Course
           </ChakraButton>
         </div>
@@ -198,7 +198,7 @@ function CourseManage() {
                   onChange={(e) => setSelectedProgram(e.target.value)}
                 >
                   {programs.map(program => (
-                    <option key={program.id} value={program.name}>
+                    <option key={program.id} value={program.id}>
                       {program.name}
                     </option>
                   ))}
@@ -246,7 +246,7 @@ function CourseManage() {
                     onChange={(e) => setSelectedProgram(e.target.value)}
                   >
                     {programs.map(program => (
-                      <option key={program.id} value={program.name}>
+                      <option key={program.id} value={program.id}>
                         {program.name}
                       </option>
                     ))}
@@ -278,7 +278,7 @@ function CourseManage() {
             <tr key={course.id}>
               <td>{idx + 1}</td>
               <td>{course.courseId}</td>
-              <td>{course.courseName}</td>
+              <td>{course.name}</td>
               <td>{course.program}</td>
               <td>
                 <HStack spacing="15px" justify="center">
