@@ -1,40 +1,34 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import {
-  createBrowserRouter,
   Navigate,
   RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
-import { ChakraProvider } from "@chakra-ui/react";
-import Login from "./Pages/Login/Login";
+import "./App.css";
 import Layout from "./Layout/Layout";
+import ClassManage from "./Pages/ClassManage/ClassManage";
+import Course from "./Pages/Course/Course";
+import CourseManage from "./Pages/CourseManage/CourseManage";
+import CourseTeacher from "./Pages/CourseTeacher/CourseTeacher";
 import Education from "./Pages/Education/Education";
 import Event from "./Pages/Event/Event";
-import Student from "./Pages/Student/Student";
-import Professor from "./Pages/Professor/Professor";
-import StudentManage from "./Pages/StudentManage/StudentManage";
-import TeacherManage from "./Pages/TeacherManage/TeacherManage";
-import CourseManage from "./Pages/CourseManage/CourseManage";
-import Course from "./Pages/Course/Course";
-import EventTeacher from "./Pages/EventTeacher/EventTeacher";
-import Teacher from "./Pages/Teacher/Teacher";
-import CourseTeacher from "./Pages/CourseTeacher/CourseTeacher";
-import { useEffect } from "react";
-import axios from "axios";
-import { updateToken } from "./redux/feature/tokenSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { updateUser } from "./redux/feature/useSlice";
-
-// import PermissionPage from "./Pages/PermissionPage/PermissionPage";
-// import Course from "./Pages/Course/Course";
 import EventManage from "./Pages/EventManage/EventManage";
+import EventTeacher from "./Pages/EventTeacher/EventTeacher";
+import Login from "./Pages/Login/Login";
+import Professor from "./Pages/Professor/Professor";
 import ProgramManage from "./Pages/ProgramManage/ProgramManage";
-import ClassManage from "./Pages/ClassManage/ClassManage";
+import Student from "./Pages/Student/Student";
+import StudentManage from "./Pages/StudentManage/StudentManage";
+import Teacher from "./Pages/Teacher/Teacher";
+import TeacherManage from "./Pages/TeacherManage/TeacherManage";
+import { updateToken } from "./redux/feature/tokenSlice";
+import { RootState } from './redux/store';
 
 function App() {
   const dispatch = useDispatch();
-  const role = useSelector((store) => store.user.role);
+  const role = useSelector((store: RootState) => store.user.role);
   dispatch(updateToken(localStorage.getItem("token") ?? ""));
 
   console.log("role", role);
@@ -61,19 +55,16 @@ function App() {
         },
         {
           path: "event",
-          element: <Event />,
           element:
             role === "Student" ? <Event /> : <Navigate to={"/event"} />,
         },
         {
           path: "student",
-          element: <Student />,
           element:
             role === "Student" ? <Student /> : <Navigate to={"/student"} />,
         },
         {
           path: "professor",
-          element: <Professor />,
           element:
             role === "Student" ? (
               <Professor />
@@ -83,7 +74,6 @@ function App() {
         },
         {
           path: "course",
-          element: <Course />,
           element:
             role === "Student" ? <Course /> : <Navigate to={"/course"} />,
         },
@@ -112,7 +102,6 @@ function App() {
         },
         {
           path: "event-manage",
-          element: <EventManage />,
           element:
             role === "Admin" ? (
               <EventManage />
@@ -122,7 +111,6 @@ function App() {
         },
         {
           path: "course-manage",
-          element: <CourseManage />,
           element:
             role === "Admin" ? (
               <CourseManage />
@@ -132,7 +120,6 @@ function App() {
         },
         {
           path: "program-manage",
-          element: <ProgramManage />,
           element:
             role === "Admin" ? (
               <ProgramManage />
@@ -142,7 +129,6 @@ function App() {
         },
         {
           path: "class-manage",
-          element: <ClassManage />,
           element:
             role === "Admin" ? (
               <ClassManage />
@@ -155,7 +141,6 @@ function App() {
 
         {
           path: "event-teacher",
-          element: <EventTeacher />,
           element:
             role === "Teacher" ? (
               <EventTeacher />
@@ -165,14 +150,12 @@ function App() {
         },
         {
           path: "teacher",
-          element: <Teacher />,
           element:
             role === "Teacher" ? <Teacher /> : <Navigate to={"/teacher"} />,
         },
 
         {
           path: "course-teacher",
-          element: <CourseTeacher />,
           element:
             role === "Teacher" ? (
               <CourseTeacher />
@@ -182,10 +165,6 @@ function App() {
         },
       ],
     },
-    // {
-    //     path:"/login",
-    //     element: <loginPage/>
-    // }
   ]);
   return (
     <ChakraProvider>

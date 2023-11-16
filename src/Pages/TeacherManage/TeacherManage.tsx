@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import "./TeacherManage.css";
-import { AiOutlineSearch } from "react-icons/ai";
+import React, { FormEvent, useState } from 'react';
+import './TeacherManage.css';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { Button } from '@chakra-ui/react';
 import {
   Modal,
@@ -36,7 +36,7 @@ function TeacherManage() {
     // Thêm dữ liệu giáo viên khác ở đây
   ]);
 
-  const [newTeacher, setNewTeacher] = useState({
+  const [newTeacher, setNewTeacher] = useState<any>({
     id: '',
     name: '',
     dob: '',
@@ -47,7 +47,7 @@ function TeacherManage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // State to store the selected teacher for detail modal
-  const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [selectedTeacher, setSelectedTeacher] = useState<any>(null);
 
   const handleAddTeacher = () => {
     setNewTeacher({
@@ -64,93 +64,93 @@ function TeacherManage() {
     onClose();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     setTeachers([...teachers, newTeacher]);
     onClose();
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: any) => {
     const updatedTeachers = teachers.filter((teacher) => teacher.id !== id);
     setTeachers(updatedTeachers);
   };
 
   // Function to open the detail modal and set the selected teacher
-  const handleOpenDetail = (teacher) => {
+  const handleOpenDetail = (teacher: any) => {
     setSelectedTeacher(teacher);
     onOpen();
   };
 
   return (
-    <div className="App">
-      <div className="search-bar-1">
-        <div className="search-container">
-          <input type="text" className="search-input" placeholder="Search..." />
+    <div className='App'>
+      <div className='search-bar-1'>
+        <div className='search-container'>
+          <input type='text' className='search-input' placeholder='Search...' />
           <i>
             <AiOutlineSearch />
           </i>
         </div>
-        <div className="add-btn">
-          <Button onClick={handleAddTeacher} colorScheme="blue">
+        <div className='add-btn'>
+          <Button onClick={handleAddTeacher} colorScheme='blue'>
             Add Teacher
           </Button>
         </div>
       </div>
-      <Modal isOpen={isOpen} onClose={onClose} size="md">
+      <Modal isOpen={isOpen} onClose={onClose} size='md'>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            {selectedTeacher ? "Teacher Details" : "Add Teacher"}
+            {selectedTeacher ? 'Teacher Details' : 'Add Teacher'}
           </ModalHeader>
           <ModalCloseButton />
           {selectedTeacher ? (
             <ModalBody>
               <FormControl>
-                <FormLabel htmlFor="id">ID:</FormLabel>
+                <FormLabel htmlFor='id'>ID:</FormLabel>
                 <Input
-                  type="text"
-                  id="id"
-                  name="id"
+                  type='text'
+                  id='id'
+                  name='id'
                   value={selectedTeacher.id}
                   readOnly
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="name">Teacher Name:</FormLabel>
+                <FormLabel htmlFor='name'>Teacher Name:</FormLabel>
                 <Input
-                  type="text"
-                  id="name"
-                  name="name"
+                  type='text'
+                  id='name'
+                  name='name'
                   value={selectedTeacher.name}
                   readOnly
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="dob">Date Of Birth:</FormLabel>
+                <FormLabel htmlFor='dob'>Date Of Birth:</FormLabel>
                 <Input
-                  type="text"
-                  id="dob"
-                  name="dob"
+                  type='text'
+                  id='dob'
+                  name='dob'
                   value={selectedTeacher.dob}
                   readOnly
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="teacherCode">Teacher Code:</FormLabel>
+                <FormLabel htmlFor='teacherCode'>Teacher Code:</FormLabel>
                 <Input
-                  type="text"
-                  id="teacherCode"
-                  name="teacherCode"
+                  type='text'
+                  id='teacherCode'
+                  name='teacherCode'
                   value={selectedTeacher.teacherCode}
                   readOnly
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="email">Email:</FormLabel>
+                <FormLabel htmlFor='email'>Email:</FormLabel>
                 <Input
-                  type="email"
-                  id="email"
-                  name="email"
+                  type='email'
+                  id='email'
+                  name='email'
                   value={selectedTeacher.email}
                   readOnly
                 />
@@ -160,37 +160,37 @@ function TeacherManage() {
             <form onSubmit={handleFormSubmit}>
               <ModalBody>
                 <FormControl>
-                  <FormLabel htmlFor="id">ID:</FormLabel>
+                  <FormLabel htmlFor='id'>ID:</FormLabel>
                   <Input
-                    type="text"
-                    id="id"
-                    name="id"
+                    type='text'
+                    id='id'
+                    name='id'
                     value={newTeacher.id}
-                    placeholder="01"
+                    placeholder='01'
                     onChange={(e) =>
                       setNewTeacher({ ...newTeacher, id: e.target.value })
                     }
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="name">Teacher Name:</FormLabel>
+                  <FormLabel htmlFor='name'>Teacher Name:</FormLabel>
                   <Input
-                    type="text"
-                    id="name"
-                    name="name"
+                    type='text'
+                    id='name'
+                    name='name'
                     value={newTeacher.name}
-                    placeholder="Nguyen Van A"
+                    placeholder='Nguyen Van A'
                     onChange={(e) =>
                       setNewTeacher({ ...newTeacher, name: e.target.value })
                     }
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="dob">Date Of Birth:</FormLabel>
+                  <FormLabel htmlFor='dob'>Date Of Birth:</FormLabel>
                   <Input
-                    type="date"
-                    id="dob"
-                    name="dob"
+                    type='date'
+                    id='dob'
+                    name='dob'
                     value={newTeacher.dob}
                     onChange={(e) =>
                       setNewTeacher({ ...newTeacher, dob: e.target.value })
@@ -198,26 +198,29 @@ function TeacherManage() {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="teacherCode">Teacher Code:</FormLabel>
+                  <FormLabel htmlFor='teacherCode'>Teacher Code:</FormLabel>
                   <Input
-                    type="text"
-                    id="teacherCode"
-                    name="teacherCode"
+                    type='text'
+                    id='teacherCode'
+                    name='teacherCode'
                     value={newTeacher.teacherCode}
-                    placeholder="GCH220041"
+                    placeholder='GCH220041'
                     onChange={(e) =>
-                      setNewTeacher({ ...newTeacher, teacherCode: e.target.value })
+                      setNewTeacher({
+                        ...newTeacher,
+                        teacherCode: e.target.value,
+                      })
                     }
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel htmlFor="email">Email:</FormLabel>
+                  <FormLabel htmlFor='email'>Email:</FormLabel>
                   <Input
-                    type="email"
-                    id="email"
-                    name="email"
+                    type='email'
+                    id='email'
+                    name='email'
                     value={newTeacher.email}
-                    placeholder="abcgd@gmail.com"
+                    placeholder='abcgd@gmail.com'
                     onChange={(e) =>
                       setNewTeacher({ ...newTeacher, email: e.target.value })
                     }
@@ -225,7 +228,7 @@ function TeacherManage() {
                 </FormControl>
               </ModalBody>
               <ModalFooter>
-                <ChakraButton colorScheme="blue" type="submit">
+                <ChakraButton colorScheme='blue' type='submit'>
                   Add Teacher
                 </ChakraButton>
                 <ChakraButton onClick={handleCancel}>Hủy</ChakraButton>
@@ -234,7 +237,7 @@ function TeacherManage() {
           )}
         </ModalContent>
       </Modal>
-      <table className="teacher-table">
+      <table className='teacher-table'>
         <thead>
           <tr>
             <th>ID</th>
@@ -254,10 +257,17 @@ function TeacherManage() {
               <td>{teacher.teacherCode}</td>
               <td>{teacher.email}</td>
               <td>
-                <Button onClick={() => handleDelete(teacher.id)} colorScheme="red">
+                <Button
+                  onClick={() => handleDelete(teacher.id)}
+                  colorScheme='red'
+                >
                   Delete
                 </Button>
-                <Button onClick={() => handleOpenDetail(teacher)} colorScheme="blue" className='detail-teacher'>
+                <Button
+                  onClick={() => handleOpenDetail(teacher)}
+                  colorScheme='blue'
+                  className='detail-teacher'
+                >
                   Detail
                 </Button>
               </td>

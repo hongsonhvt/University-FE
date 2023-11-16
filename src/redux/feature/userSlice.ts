@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   firstName: '',
   role: '',
-}
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -16,9 +16,9 @@ export const userSlice = createSlice({
       state.role = role;
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { updateUser } = userSlice.actions
+export const { updateUser } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

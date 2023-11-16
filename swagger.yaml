@@ -1,0 +1,2348 @@
+openapi: 3.0.1
+info:
+  title: UM.API
+  version: '1.0'
+paths:
+  /AcademicYear:
+    get:
+      tags:
+        - AcademicYear
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.String]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.String]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.String]'
+    put:
+      tags:
+        - AcademicYear
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.AcademicYear.Commands.UpdateCurrent.UpdateCurrentCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.AcademicYear.Commands.UpdateCurrent.UpdateCurrentCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.AcademicYear.Commands.UpdateCurrent.UpdateCurrentCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.AcademicYear.Commands.UpdateCurrent.UpdateCurrentCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /AcademicYear/recommendations:
+    get:
+      tags:
+        - AcademicYear
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[System.String]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[System.String]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[System.String]]'
+  /Account/score:
+    get:
+      tags:
+        - Account
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]'
+  '/Account/{userId}':
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+    patch:
+      tags:
+        - Account
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+  /Auth:
+    get:
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Auth.Queries.MySummaryInfo.MySummaryInfoDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Auth.Queries.MySummaryInfo.MySummaryInfoDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Auth.Queries.MySummaryInfo.MySummaryInfoDto]'
+    patch:
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.UpdateMyInfo.UpdateMyInfoCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.UpdateMyInfo.UpdateMyInfoCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.UpdateMyInfo.UpdateMyInfoCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.UpdateMyInfo.UpdateMyInfoCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /Auth/login:
+    post:
+      tags:
+        - Auth
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.Login.LoginCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.Login.LoginCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.Login.LoginCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Auth.Commands.Login.LoginCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Domain.Dtos.GeneratedToken]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Domain.Dtos.GeneratedToken]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Domain.Dtos.GeneratedToken]'
+  /Course:
+    get:
+      tags:
+        - Course
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Course.Queries.GetAll.GetAllDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Course.Queries.GetAll.GetAllDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Course.Queries.GetAll.GetAllDto]]'
+    post:
+      tags:
+        - Course
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Create.CreateCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Create.CreateCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Create.CreateCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Create.CreateCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]'
+  '/Course/{id}':
+    get:
+      tags:
+        - Course
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]'
+    put:
+      tags:
+        - Course
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Update.UpdateCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Update.UpdateCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Update.UpdateCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Course.Commands.Update.UpdateCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+    delete:
+      tags:
+        - Course
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /CourseClass:
+    get:
+      tags:
+        - CourseClass
+      parameters:
+        - name: AcademicYear
+          in: query
+          schema:
+            type: string
+        - name: Status
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Domain.Dtos.CourseClass.ICourseClass]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Domain.Dtos.CourseClass.ICourseClass]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Domain.Dtos.CourseClass.ICourseClass]]'
+    post:
+      tags:
+        - CourseClass
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.BulkCreate.BulkCreateCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.BulkCreate.BulkCreateCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.BulkCreate.BulkCreateCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.BulkCreate.BulkCreateCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/CourseClass/{id}':
+    get:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.CourseClass.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.CourseClass.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.CourseClass.Queries.GetById.GetByIdDto]'
+    put:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.Update.UpdateCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.Update.UpdateCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.Update.UpdateCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.Update.UpdateCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+    delete:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/CourseClass/{id}/management-class':
+    post:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToManagementClasses.AssignToManagementClassesCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToManagementClasses.AssignToManagementClassesCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToManagementClasses.AssignToManagementClassesCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToManagementClasses.AssignToManagementClassesCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/CourseClass/{id}/score':
+    get:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.CourseClass.Queries.GetScores.GetScoresDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.CourseClass.Queries.GetScores.GetScoresDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.CourseClass.Queries.GetScores.GetScoresDto]]'
+  '/CourseClass/{id}/student':
+    post:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToStudents.AssignToStudentsCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToStudents.AssignToStudentsCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToStudents.AssignToStudentsCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.AssignToStudents.AssignToStudentsCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/CourseClass/{id}/student/{studentId}':
+    put:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.UpdateScore.UpdateScoreCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.UpdateScore.UpdateScoreCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.UpdateScore.UpdateScoreCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.CourseClass.Commands.UpdateScore.UpdateScoreCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/CourseClass/{id}/teacher/{teacherId}':
+    post:
+      tags:
+        - CourseClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: teacherId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /ManagementClass:
+    get:
+      tags:
+        - ManagementClass
+      parameters:
+        - name: AcademicYear
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ManagementClass.Queries.GetAll.GetAllDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ManagementClass.Queries.GetAll.GetAllDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ManagementClass.Queries.GetAll.GetAllDto]]'
+    post:
+      tags:
+        - ManagementClass
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.BulkCreate.BulkCreateCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.BulkCreate.BulkCreateCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.BulkCreate.BulkCreateCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.BulkCreate.BulkCreateCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/ManagementClass/{id}':
+    get:
+      tags:
+        - ManagementClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ManagementClass.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ManagementClass.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ManagementClass.Queries.GetById.GetByIdDto]'
+    put:
+      tags:
+        - ManagementClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.Update.UpdateCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.Update.UpdateCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.Update.UpdateCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.Update.UpdateCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+    delete:
+      tags:
+        - ManagementClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/ManagementClass/{id}/student':
+    post:
+      tags:
+        - ManagementClass
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.AddStudents.AddStudentsCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.AddStudents.AddStudentsCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.AddStudents.AddStudentsCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ManagementClass.Commands.AddStudents.AddStudentsCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /Program:
+    get:
+      tags:
+        - Program
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Program.Queries.GetAll.GetAllDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Program.Queries.GetAll.GetAllDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Program.Queries.GetAll.GetAllDto]]'
+    post:
+      tags:
+        - Program
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Create.CreateCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Create.CreateCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Create.CreateCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Create.CreateCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]'
+  '/Program/{id}':
+    get:
+      tags:
+        - Program
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]'
+    put:
+      tags:
+        - Program
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Update.UpdateCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Update.UpdateCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Update.UpdateCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Program.Commands.Update.UpdateCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+    delete:
+      tags:
+        - Program
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /Session:
+    get:
+      tags:
+        - Session
+      parameters:
+        - name: MinDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: MaxDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Slot
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Session.Queries.GetAll.GetAllDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Session.Queries.GetAll.GetAllDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Session.Queries.GetAll.GetAllDto]]'
+  /Session/change:
+    get:
+      tags:
+        - Session
+      parameters:
+        - name: Status
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ChangeSessionRequest.Queries.GetAll.GetAllDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ChangeSessionRequest.Queries.GetAll.GetAllDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ChangeSessionRequest.Queries.GetAll.GetAllDto]]'
+  '/Session/change/{id}':
+    get:
+      tags:
+        - Session
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]'
+  '/Session/change/{id}/approve':
+    post:
+      tags:
+        - Session
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/Session/change/{id}/deny':
+    post:
+      tags:
+        - Session
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  '/Session/{id}/change':
+    post:
+      tags:
+        - Session
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Commands.Create.CreateCommandData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Commands.Create.CreateCommandData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Commands.Create.CreateCommandData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Commands.Create.CreateCommandData'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]'
+  '/Student/{id}/score':
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]'
+  /Student/import:
+    post:
+      tags:
+        - Student
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[System.Boolean]'
+  /Teacher:
+    post:
+      tags:
+        - Teacher
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Teacher.Commands.Create.CreateCommand'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Teacher.Commands.Create.CreateCommand'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Teacher.Commands.Create.CreateCommand'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UM.Application.Teacher.Commands.Create.CreateCommand'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]'
+components:
+  schemas:
+    System.DayOfWeek:
+      enum:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      type: integer
+      format: int32
+    System.Net.HttpStatusCode:
+      enum:
+        - 100
+        - 101
+        - 102
+        - 103
+        - 200
+        - 201
+        - 202
+        - 203
+        - 204
+        - 205
+        - 206
+        - 207
+        - 208
+        - 226
+        - 300
+        - 301
+        - 302
+        - 303
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 400
+        - 401
+        - 402
+        - 403
+        - 404
+        - 405
+        - 406
+        - 407
+        - 408
+        - 409
+        - 410
+        - 411
+        - 412
+        - 413
+        - 414
+        - 415
+        - 416
+        - 417
+        - 421
+        - 422
+        - 423
+        - 424
+        - 426
+        - 428
+        - 429
+        - 431
+        - 451
+        - 500
+        - 501
+        - 502
+        - 503
+        - 504
+        - 505
+        - 506
+        - 507
+        - 508
+        - 510
+        - 511
+      type: integer
+      format: int32
+    UM.Application.AcademicYear.Commands.UpdateCurrent.UpdateCurrentCommand:
+      type: object
+      properties:
+        academicYear:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Account.Queries.GetById.GetByIdDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Auth.Commands.Login.LoginCommand:
+      type: object
+      properties:
+        userName:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Auth.Commands.UpdateMyInfo.UpdateMyInfoCommand:
+      type: object
+      properties:
+        phoneNumber:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Auth.Queries.MySummaryInfo.MySummaryInfoDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        role:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Commands.Create.CreateCommandData:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        slot:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetAll.GetAllDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        newSlot:
+          type: integer
+          format: int32
+        newStartAt:
+          type: string
+          format: date-time
+        newEndAt:
+          type: string
+          format: date-time
+        oldSlot:
+          type: integer
+          format: int32
+        oldStartAt:
+          type: string
+          format: date-time
+        oldEndAt:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/UM.Domain.Enums.CourseClass.EChangeSessionRequestStatus'
+        session:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetAll.GetByIdDtoSession'
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetAll.GetByIdDtoCourseClass:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        academicYear:
+          type: string
+          nullable: true
+        teacher:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetAll.GetByIdDtoTeacher'
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetAll.GetByIdDtoSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        courseClass:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetAll.GetByIdDtoCourseClass'
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetAll.GetByIdDtoTeacher:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teacherId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        newSlot:
+          type: integer
+          format: int32
+        newStartAt:
+          type: string
+          format: date-time
+        newEndAt:
+          type: string
+          format: date-time
+        oldSlot:
+          type: integer
+          format: int32
+        oldStartAt:
+          type: string
+          format: date-time
+        oldEndAt:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/UM.Domain.Enums.CourseClass.EChangeSessionRequestStatus'
+        session:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDtoSession'
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDtoCourseClass:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        academicYear:
+          type: string
+          nullable: true
+        teacher:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDtoTeacher'
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDtoSession:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        courseClass:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDtoCourseClass'
+      additionalProperties: false
+    UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDtoTeacher:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        teacherId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+      additionalProperties: false
+    UM.Application.Common.Models.Error:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/System.Net.HttpStatusCode'
+        message:
+          type: string
+          nullable: true
+        property:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Boolean]':
+      type: object
+      properties:
+        data:
+          type: boolean
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[System.String]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ChangeSessionRequest.Queries.GetAll.GetAllDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetAll.GetAllDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Course.Queries.GetAll.GetAllDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Course.Queries.GetAll.GetAllDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.CourseClass.Queries.GetScores.GetScoresDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetScores.GetScoresDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.ManagementClass.Queries.GetAll.GetAllDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.ManagementClass.Queries.GetAll.GetAllDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Program.Queries.GetAll.GetAllDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Program.Queries.GetAll.GetAllDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Session.Queries.GetAll.GetAllDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Session.Queries.GetAll.GetAllDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Application.Student.Queries.GetScores.GetScoresDto]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Student.Queries.GetScores.GetScoresDto'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.Collections.Generic.IEnumerable[UM.Domain.Dtos.CourseClass.ICourseClass]]':
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Domain.Dtos.CourseClass.ICourseClass'
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[System.String]':
+      type: object
+      properties:
+        data:
+          type: string
+          nullable: true
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.Account.Queries.GetById.GetByIdDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.Account.Queries.GetById.GetByIdDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.Auth.Queries.MySummaryInfo.MySummaryInfoDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.Auth.Queries.MySummaryInfo.MySummaryInfoDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.ChangeSessionRequest.Queries.GetById.GetByIdDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.Course.Queries.GetById.GetByIdDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.Course.Queries.GetById.GetByIdDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.CourseClass.Queries.GetById.GetByIdDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetById.GetByIdDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.ManagementClass.Queries.GetById.GetByIdDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.ManagementClass.Queries.GetById.GetByIdDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Application.Program.Queries.GetById.GetByIdDto]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Application.Program.Queries.GetById.GetByIdDto'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    'UM.Application.Common.Models.Result[UM.Domain.Dtos.GeneratedToken]':
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UM.Domain.Dtos.GeneratedToken'
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Common.Models.Error'
+          nullable: true
+      additionalProperties: false
+    UM.Application.Course.Commands.Create.CreateCommand:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+        programs:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Course.Commands.Update.UpdateCommandData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Course.Queries.GetAll.GetAllDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Course.Queries.GetById.GetByIdDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+        courseClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Course.Queries.GetById.GetByIdDtoCourseClass'
+          nullable: true
+      additionalProperties: false
+    UM.Application.Course.Queries.GetById.GetByIdDtoCourseClass:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        startAt:
+          type: string
+          format: date-time
+        sessionsCount:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        academicYear:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Commands.AssignToManagementClasses.AssignToManagementClassesCommandData:
+      type: object
+      properties:
+        managementClassesId:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Commands.AssignToStudents.AssignToStudentsCommandData:
+      type: object
+      properties:
+        studentsId:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Commands.BulkCreate.BulkCreateCommand:
+      type: object
+      properties:
+        courseId:
+          type: string
+          nullable: true
+        numberOfClasses:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+          format: date-time
+        sessionsCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UM.Application.CourseClass.Commands.Update.UpdateCommandData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        startAt:
+          type: string
+          format: date-time
+        sessionsCount:
+          type: integer
+          format: int32
+        teacherId:
+          type: string
+          nullable: true
+        slots:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Commands.UpdateScore.UpdateScoreCommandData:
+      type: object
+      properties:
+        score:
+          type: number
+          format: double
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetById.GetByIdDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        startAt:
+          type: string
+          format: date-time
+        sessionsCount:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        academicYear:
+          type: string
+          nullable: true
+        teacher:
+          $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetById.GetByIdDtoTeacher'
+        courseId:
+          type: string
+          nullable: true
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetById.GetByIdDtoSession'
+          nullable: true
+        slots:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetById.GetByIdDtoSlot'
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetById.GetByIdDtoSession:
+      type: object
+      properties:
+        slot:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        courseClass:
+          $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetById.GetByIdDtoSlotCourseClass'
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetById.GetByIdDtoSlot:
+      type: object
+      properties:
+        weekDay:
+          $ref: '#/components/schemas/System.DayOfWeek'
+        daySlot:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetById.GetByIdDtoSlotCourseClass:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        academicYear:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetById.GetByIdDtoTeacher:
+      type: object
+      properties:
+        teacherId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetScores.GetScoresDto:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetScores.GetScoresDtoStudent'
+        score:
+          type: number
+          format: double
+          nullable: true
+        letterScore:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetScores.GetScoresDtoManagementClass:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        academicYear:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.CourseClass.Queries.GetScores.GetScoresDtoStudent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        studentId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+        managementClass:
+          $ref: '#/components/schemas/UM.Application.CourseClass.Queries.GetScores.GetScoresDtoManagementClass'
+      additionalProperties: false
+    UM.Application.ManagementClass.Commands.AddStudents.AddStudentsCommandData:
+      type: object
+      properties:
+        studentsId:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.ManagementClass.Commands.BulkCreate.BulkCreateCommand:
+      type: object
+      properties:
+        programId:
+          type: string
+          nullable: true
+        numberOfClasses:
+          type: integer
+          format: int32
+      additionalProperties: false
+    UM.Application.ManagementClass.Commands.Update.UpdateCommandData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.ManagementClass.Queries.GetAll.GetAllDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.ManagementClass.Queries.GetById.GetByIdDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        academicYear:
+          type: string
+          nullable: true
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.ManagementClass.Queries.GetById.GetByIdDtoStudent'
+          nullable: true
+      additionalProperties: false
+    UM.Application.ManagementClass.Queries.GetById.GetByIdDtoStudent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        studentId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+      additionalProperties: false
+    UM.Application.Program.Commands.Create.CreateCommand:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        programId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Program.Commands.Update.UpdateCommandData:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        programId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Program.Queries.GetAll.GetAllDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        programId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Program.Queries.GetById.GetByIdDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/UM.Application.Program.Queries.GetById.GetByIdDtoCourse'
+          nullable: true
+      additionalProperties: false
+    UM.Application.Program.Queries.GetById.GetByIdDtoCourse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        programId:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Session.Queries.GetAll.GetAllDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        slot:
+          type: integer
+          format: int32
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        courseClass:
+          $ref: '#/components/schemas/UM.Application.Session.Queries.GetAll.GetAllDtoCourseClass'
+      additionalProperties: false
+    UM.Application.Session.Queries.GetAll.GetAllDtoCourse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Session.Queries.GetAll.GetAllDtoCourseClass:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        course:
+          $ref: '#/components/schemas/UM.Application.Session.Queries.GetAll.GetAllDtoCourse'
+      additionalProperties: false
+    UM.Application.Student.Queries.GetScores.GetScoresDto:
+      type: object
+      properties:
+        courseClass:
+          $ref: '#/components/schemas/UM.Application.Student.Queries.GetScores.GetScoresDtoCourseClass'
+        score:
+          type: number
+          format: double
+          nullable: true
+        letterScore:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Student.Queries.GetScores.GetScoresDtoCourse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Application.Student.Queries.GetScores.GetScoresDtoCourseClass:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        sessionsCount:
+          type: integer
+          format: int32
+        status:
+          type: integer
+          format: int32
+        teacher:
+          $ref: '#/components/schemas/UM.Application.Student.Queries.GetScores.GetScoresDtoTeacher'
+        course:
+          $ref: '#/components/schemas/UM.Application.Student.Queries.GetScores.GetScoresDtoCourse'
+      additionalProperties: false
+    UM.Application.Student.Queries.GetScores.GetScoresDtoTeacher:
+      type: object
+      properties:
+        teacherId:
+          type: string
+          nullable: true
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+      additionalProperties: false
+    UM.Application.Teacher.Commands.Create.CreateCommand:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        middleName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        userName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        isMale:
+          type: boolean
+        address:
+          type: string
+          nullable: true
+        teacherId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UM.Domain.Dtos.CourseClass.ICourseClass:
+      type: object
+      additionalProperties: false
+    UM.Domain.Dtos.GeneratedToken:
+      type: object
+      properties:
+        token:
+          type: string
+          nullable: true
+        expiration:
+          type: string
+          format: date-time
+      additionalProperties: false
+    UM.Domain.Enums.CourseClass.EChangeSessionRequestStatus:
+      enum:
+        - 1
+        - 2
+        - 4
+      type: integer
+      format: int32

@@ -1,24 +1,26 @@
-import React from 'react'
-import "./SideBar.css"
-import { AiFillHome } from "react-icons/ai";
-import { AiOutlineCalendar } from "react-icons/ai";
-import { AiOutlineBook } from "react-icons/ai";
-import { AiOutlineUser } from "react-icons/ai";
-import { AiTwotoneFileImage } from "react-icons/ai";
-import {Link as ReactRouterLink  } from 'react-router-dom'
 import {
-  IconButton,
   Box,
-  Flex,
-  Icon,
-  useColorModeValue,
-  Text,
   Drawer,
   DrawerContent,
+  Flex,
+  Icon,
+  IconButton,
+  Text,
+  useColorModeValue,
   useDisclosure,
-  Link as ChakraLink
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
+import React from 'react';
+import {
+  AiFillHome,
+  AiOutlineBook,
+  AiOutlineCalendar,
+  AiOutlineUser,
+  AiTwotoneFileImage,
+} from 'react-icons/ai';
 import { useSelector } from 'react-redux';
+import { Link as ReactRouterLink } from 'react-router-dom';
+import { RootState } from '../../redux/store';
+import './SideBar.css';
 
 // const SideBar = () => {
 //   return (
@@ -94,22 +96,22 @@ import { useSelector } from 'react-redux';
 //   )
 // }
 
-
-
 function SideBar() {
-
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+      <SidebarContent
+        onClose={() => onClose}
+        display={{ base: 'none', md: 'block' }}
+      />
       <Drawer
         isOpen={isOpen}
-        placement="left"
+        placement='left'
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full">
+        size='full'
+      >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
@@ -117,15 +119,14 @@ function SideBar() {
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
     </Box>
-  )
+  );
 }
-const SidebarContent = ({ onClose, ...rest }) => {
-  const role = useSelector((store) => store.user.role);
+const SidebarContent = ({ onClose, ...rest }: any) => {
+  const role = useSelector((store: RootState) => store.user.role);
   console.log('role', role);
 
   // const check = role === 'Teacher'
   // console.log('check',check);
-  
 
   const LinkItems = [
     { name: 'Education', icon: AiFillHome, navigateTo: '/education' },
@@ -133,15 +134,47 @@ const SidebarContent = ({ onClose, ...rest }) => {
     { name: 'Professor', icon: AiOutlineBook, navigateTo: '/professor' },
     { name: 'Student', icon: AiOutlineUser, navigateTo: '/student' },
     { name: 'Course', icon: AiTwotoneFileImage, navigateTo: '/course' },
-    { name: 'StudentManage', icon: AiOutlineBook, navigateTo: '/student-manage' },
-    { name: 'TeacherManage', icon: AiOutlineUser, navigateTo: '/teacher-manage' },
-    { name: 'EventManage', icon: AiTwotoneFileImage, navigateTo: '/event-manage' },
-    { name: 'CourseManage', icon: AiTwotoneFileImage, navigateTo: '/course-manage' },
-    { name: 'EventTeacher', icon: AiTwotoneFileImage, navigateTo: '/event-teacher' },
+    {
+      name: 'StudentManage',
+      icon: AiOutlineBook,
+      navigateTo: '/student-manage',
+    },
+    {
+      name: 'TeacherManage',
+      icon: AiOutlineUser,
+      navigateTo: '/teacher-manage',
+    },
+    {
+      name: 'EventManage',
+      icon: AiTwotoneFileImage,
+      navigateTo: '/event-manage',
+    },
+    {
+      name: 'CourseManage',
+      icon: AiTwotoneFileImage,
+      navigateTo: '/course-manage',
+    },
+    {
+      name: 'EventTeacher',
+      icon: AiTwotoneFileImage,
+      navigateTo: '/event-teacher',
+    },
     { name: 'Teacher', icon: AiTwotoneFileImage, navigateTo: '/teacher' },
-    { name: 'CourseTeacher', icon: AiTwotoneFileImage, navigateTo: '/course-teacher' },
-    { name: 'ProgramManage', icon: AiTwotoneFileImage, navigateTo: '/program-manage' },
-    { name: 'ClassManage', icon: AiTwotoneFileImage, navigateTo: '/class-manage' },
+    {
+      name: 'CourseTeacher',
+      icon: AiTwotoneFileImage,
+      navigateTo: '/course-teacher',
+    },
+    {
+      name: 'ProgramManage',
+      icon: AiTwotoneFileImage,
+      navigateTo: '/program-manage',
+    },
+    {
+      name: 'ClassManage',
+      icon: AiTwotoneFileImage,
+      navigateTo: '/class-manage',
+    },
   ];
 
   // Filter LinkItems based on the role
@@ -178,14 +211,19 @@ const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
-      borderRight="1px"
+      borderRight='1px'
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full' }}
-      h="full"
+      h='full'
       {...rest}
     >
       {filteredLinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} as={ReactRouterLink} to={link.navigateTo}>
+        <NavItem
+          key={link.name}
+          icon={link.icon}
+          as={ReactRouterLink}
+          to={link.navigateTo}
+        >
           {link.name}
         </NavItem>
       ))}
@@ -193,28 +231,26 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, children, ...rest }: any) => {
   return (
-    <Box
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}>
+    <Box style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
+        align='center'
+        p='4'
+        mx='4'
+        borderRadius='lg'
+        role='group'
+        cursor='pointer'
         _hover={{
           bg: 'cyan.400',
           color: 'white',
         }}
-        {...rest}>
+        {...rest}
+      >
         {icon && (
           <Icon
-            mr="4"
-            fontSize="16"
+            mr='4'
+            fontSize='16'
             _groupHover={{
               color: 'white',
             }}
@@ -224,33 +260,34 @@ const NavItem = ({ icon, children, ...rest }) => {
         {children}
       </Flex>
     </Box>
-  )
-}
+  );
+};
 
-const MobileNav = ({ onOpen, ...rest }) => {
+const MobileNav = ({ onOpen, ...rest }: any) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 24 }}
-      height="20"
-      alignItems="center"
+      height='20'
+      alignItems='center'
       bg={useColorModeValue('white', 'gray.900')}
-      borderBottomWidth="1px"
+      borderBottomWidth='1px'
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent="flex-start"
-      {...rest}>
+      justifyContent='flex-start'
+      {...rest}
+    >
       <IconButton
-        variant="outline"
+        variant='outline'
         onClick={onOpen}
-        aria-label="open menu"
+        aria-label='open menu'
         icon={<AiFillHome />}
       />
 
-      <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
+      <Text fontSize='2xl' ml='8' fontFamily='monospace' fontWeight='bold'>
         Logo
       </Text>
     </Flex>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;

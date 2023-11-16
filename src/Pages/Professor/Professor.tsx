@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineSearch } from "react-icons/ai"
 import { FaFacebookF, FaVoicemail } from "react-icons/fa";
-import Images from '../../Images/Images'
+import Useravatar from '../../Images/User-avatar.svg.png'
 import "./Professor.css";
 
 const professors = [
@@ -81,7 +81,7 @@ const Professor = () => {
                     <FaVoicemail />
                   </a>
                 </div>
-                <img src={Images.Useravatar} alt="" />
+                <img src={Useravatar} alt="" />
                 <h4>{professor.name}</h4>
                 <p className="professor-loc">{professor.hometown}</p>
                 <p>{professor.professorInformation}</p>
