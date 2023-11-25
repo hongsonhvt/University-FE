@@ -9,9 +9,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
-  InputGroup,
-  InputRightElement,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -25,17 +22,15 @@ import {
   NumberInputField,
   NumberInputStepper,
   Select,
-  Spinner,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
+import { InputSearch } from '@components';
 import { ValidationMessage } from '@constants';
 import { CourseClassList_Get, RootState } from '@redux';
-import { useDebounce } from '@uidotdev/usehooks';
 import { SingleDatepicker } from 'chakra-dayzed-datepicker';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 type CreateFormData = {
@@ -49,35 +44,13 @@ const Search = () => {
   const status = useSelector(
     (store: RootState) => store.courseClassList.status
   );
-  const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
-  const debouncedSearch = useDebounce(searchText, 300);
-  const first = useRef(true);
 
-  useEffect(() => {
-    if (first.current) {
-      first.current = false;
-      return;
-    }
+  const onSearch = async (searchText: string) => {
+    dispatch(CourseClassList_Get({ q: searchText }));
+  };
 
-    const searchHN = async () => {
-      dispatch(CourseClassList_Get({ q: debouncedSearch }));
-    };
-
-    searchHN();
-  }, [debouncedSearch]);
-
-  return (
-    <InputGroup>
-      <Input
-        onChange={(e) => setSearchText(e.target.value)}
-        placeholder='Search...'
-      />
-      <InputRightElement>
-        {status === 'loading' ? <Spinner /> : <AiOutlineSearch />}
-      </InputRightElement>
-    </InputGroup>
-  );
+  return <InputSearch onSearch={onSearch} status={status} />;
 };
 
 const AddButton = () => {

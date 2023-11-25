@@ -1,5 +1,6 @@
 import { Course, UMApplicationCourseCommandsCreateCreateCommand } from '@api';
 import {
+  Box,
   Button,
   Flex,
   FormControl,
@@ -16,6 +17,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
+import { InputSearch } from '@components';
 import { ValidationMessage } from '@constants';
 import { SelectItemType } from '@models';
 import { CourseList_Get, RootState } from '@redux';
@@ -28,6 +30,17 @@ type CreateFormData = {
   courseId: string;
   name: string;
   programs: readonly SelectItemType[];
+};
+
+const Search = () => {
+  const status = useSelector((store: RootState) => store.courseList.status);
+  const dispatch = useDispatch();
+
+  const onSearch = async (searchText: string) => {
+    dispatch(CourseList_Get({ q: searchText }));
+  };
+
+  return <InputSearch onSearch={onSearch} status={status} />;
 };
 
 const AddButton = () => {
@@ -150,7 +163,10 @@ const AddButton = () => {
 
 const Actions = () => {
   return (
-    <Flex justify='end'>
+    <Flex justify='space-between'>
+      <Box w='50%' maxW='500px'>
+        <Search />
+      </Box>
       <AddButton />
     </Flex>
   );
