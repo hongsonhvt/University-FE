@@ -10,47 +10,43 @@
  */
 
 import {
-  CourseCreateData,
-  CourseDeleteData,
-  CourseDetailData,
-  CourseListData,
-  CourseUpdateData,
+  DeleteCourseData,
+  GetCourseByIdData,
+  GetCourseData,
+  GetCourseParams,
+  PostCourseData,
+  PutCourseData,
   UMApplicationCourseCommandsCreateCreateCommand,
   UMApplicationCourseCommandsUpdateUpdateCommandData,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Course<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Course<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Course
-   * @name CourseList
+   * @name GetCourse
    * @request GET:/Course
-   * @response `200` `CourseListData` Success
+   * @response `200` `GetCourseData` Success
    */
-  courseList = (params: RequestParams = {}) =>
-    this.http.request<CourseListData, any>({
+  getCourse = (query: GetCourseParams, params: RequestParams = {}) =>
+    this.request<GetCourseData>({
       path: `/Course`,
       method: "GET",
+      query: query,
       ...params,
     });
   /**
    * No description
    *
    * @tags Course
-   * @name CourseCreate
+   * @name PostCourse
    * @request POST:/Course
-   * @response `200` `CourseCreateData` Success
+   * @response `200` `PostCourseData` Success
    */
-  courseCreate = (data: UMApplicationCourseCommandsCreateCreateCommand, params: RequestParams = {}) =>
-    this.http.request<CourseCreateData, any>({
+  postCourse = (data: UMApplicationCourseCommandsCreateCreateCommand, params: RequestParams = {}) =>
+    this.request<PostCourseData>({
       path: `/Course`,
       method: "POST",
       body: data,
@@ -61,12 +57,12 @@ export class Course<SecurityDataType = unknown> {
    * No description
    *
    * @tags Course
-   * @name CourseDetail
+   * @name GetCourseById
    * @request GET:/Course/{id}
-   * @response `200` `CourseDetailData` Success
+   * @response `200` `GetCourseByIdData` Success
    */
-  courseDetail = (id: string, params: RequestParams = {}) =>
-    this.http.request<CourseDetailData, any>({
+  getCourseById = (id: string, params: RequestParams = {}) =>
+    this.request<GetCourseByIdData>({
       path: `/Course/${id}`,
       method: "GET",
       ...params,
@@ -75,12 +71,12 @@ export class Course<SecurityDataType = unknown> {
    * No description
    *
    * @tags Course
-   * @name CourseUpdate
+   * @name PutCourse
    * @request PUT:/Course/{id}
-   * @response `200` `CourseUpdateData` Success
+   * @response `200` `PutCourseData` Success
    */
-  courseUpdate = (id: string, data: UMApplicationCourseCommandsUpdateUpdateCommandData, params: RequestParams = {}) =>
-    this.http.request<CourseUpdateData, any>({
+  putCourse = (id: string, data: UMApplicationCourseCommandsUpdateUpdateCommandData, params: RequestParams = {}) =>
+    this.request<PutCourseData>({
       path: `/Course/${id}`,
       method: "PUT",
       body: data,
@@ -91,12 +87,12 @@ export class Course<SecurityDataType = unknown> {
    * No description
    *
    * @tags Course
-   * @name CourseDelete
+   * @name DeleteCourse
    * @request DELETE:/Course/{id}
-   * @response `200` `CourseDeleteData` Success
+   * @response `200` `DeleteCourseData` Success
    */
-  courseDelete = (id: string, params: RequestParams = {}) =>
-    this.http.request<CourseDeleteData, any>({
+  deleteCourse = (id: string, params: RequestParams = {}) =>
+    this.request<DeleteCourseData>({
       path: `/Course/${id}`,
       method: "DELETE",
       ...params,

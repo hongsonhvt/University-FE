@@ -9,26 +9,40 @@
  * ---------------------------------------------------------------
  */
 
-import { TeacherCreateResult, UMApplicationTeacherCommandsCreateCreateCommand } from "./data-contracts";
+import {
+  GetTeacherData,
+  GetTeacherParams,
+  PostTeacherData,
+  UMApplicationTeacherCommandsCreateCreateCommand,
+} from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Teacher<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Teacher<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Teacher
-   * @name TeacherCreate
-   * @request POST:/Teacher
-   * @response `200` `TeacherCreateResult` Success
+   * @name GetTeacher
+   * @request GET:/Teacher
+   * @response `200` `GetTeacherData` Success
    */
-  teacherCreate = (data: UMApplicationTeacherCommandsCreateCreateCommand, params: RequestParams = {}) =>
-    this.http.request<TeacherCreateResult, any>({
+  getTeacher = (query: GetTeacherParams, params: RequestParams = {}) =>
+    this.request<GetTeacherData>({
+      path: `/Teacher`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Teacher
+   * @name PostTeacher
+   * @request POST:/Teacher
+   * @response `200` `PostTeacherData` Success
+   */
+  postTeacher = (data: UMApplicationTeacherCommandsCreateCreateCommand, params: RequestParams = {}) =>
+    this.request<PostTeacherData>({
       path: `/Teacher`,
       method: "POST",
       body: data,

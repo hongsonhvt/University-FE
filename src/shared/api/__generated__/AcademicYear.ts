@@ -10,30 +10,24 @@
  */
 
 import {
-  AcademicYearListData,
-  AcademicYearUpdateData,
-  RecommendationsListData,
+  GetAcademicYearData,
+  GetRecommendationsData,
+  PutAcademicYearData,
   UMApplicationAcademicYearCommandsUpdateCurrentUpdateCurrentCommand,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class AcademicYear<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class AcademicYear<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags AcademicYear
-   * @name AcademicYearList
+   * @name GetAcademicYear
    * @request GET:/AcademicYear
-   * @response `200` `AcademicYearListData` Success
+   * @response `200` `GetAcademicYearData` Success
    */
-  academicYearList = (params: RequestParams = {}) =>
-    this.http.request<AcademicYearListData, any>({
+  getAcademicYear = (params: RequestParams = {}) =>
+    this.request<GetAcademicYearData>({
       path: `/AcademicYear`,
       method: "GET",
       ...params,
@@ -42,15 +36,15 @@ export class AcademicYear<SecurityDataType = unknown> {
    * No description
    *
    * @tags AcademicYear
-   * @name AcademicYearUpdate
+   * @name PutAcademicYear
    * @request PUT:/AcademicYear
-   * @response `200` `AcademicYearUpdateData` Success
+   * @response `200` `PutAcademicYearData` Success
    */
-  academicYearUpdate = (
+  putAcademicYear = (
     data: UMApplicationAcademicYearCommandsUpdateCurrentUpdateCurrentCommand,
     params: RequestParams = {},
   ) =>
-    this.http.request<AcademicYearUpdateData, any>({
+    this.request<PutAcademicYearData>({
       path: `/AcademicYear`,
       method: "PUT",
       body: data,
@@ -61,12 +55,12 @@ export class AcademicYear<SecurityDataType = unknown> {
    * No description
    *
    * @tags AcademicYear
-   * @name RecommendationsList
+   * @name GetRecommendations
    * @request GET:/AcademicYear/recommendations
-   * @response `200` `RecommendationsListData` Success
+   * @response `200` `GetRecommendationsData` Success
    */
-  recommendationsList = (params: RequestParams = {}) =>
-    this.http.request<RecommendationsListData, any>({
+  getRecommendations = (params: RequestParams = {}) =>
+    this.request<GetRecommendationsData>({
       path: `/AcademicYear/recommendations`,
       method: "GET",
       ...params,

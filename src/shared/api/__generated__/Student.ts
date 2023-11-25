@@ -9,26 +9,35 @@
  * ---------------------------------------------------------------
  */
 
-import { ImportCreateData, ScoreDetailResult } from "./data-contracts";
+import { GetScoreData, GetStudentData, GetStudentParams, ImportData } from "./data-contracts";
 import { HttpClient, RequestParams } from "./http-client";
 
-export class Student<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Student<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Student
-   * @name ScoreDetail
-   * @request GET:/Student/{id}/score
-   * @response `200` `ScoreDetailResult` Success
+   * @name GetStudent
+   * @request GET:/Student
+   * @response `200` `GetStudentData` Success
    */
-  scoreDetail = (id: string, params: RequestParams = {}) =>
-    this.http.request<ScoreDetailResult, any>({
+  getStudent = (query: GetStudentParams, params: RequestParams = {}) =>
+    this.request<GetStudentData>({
+      path: `/Student`,
+      method: "GET",
+      query: query,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Student
+   * @name GetScore
+   * @request GET:/Student/{id}/score
+   * @response `200` `GetScoreData` Success
+   */
+  getScore = (id: string, params: RequestParams = {}) =>
+    this.request<GetScoreData>({
       path: `/Student/${id}/score`,
       method: "GET",
       ...params,
@@ -37,12 +46,12 @@ export class Student<SecurityDataType = unknown> {
    * No description
    *
    * @tags Student
-   * @name ImportCreate
+   * @name Import
    * @request POST:/Student/import
-   * @response `200` `ImportCreateData` Success
+   * @response `200` `ImportData` Success
    */
-  importCreate = (params: RequestParams = {}) =>
-    this.http.request<ImportCreateData, any>({
+  import = (params: RequestParams = {}) =>
+    this.request<ImportData>({
       path: `/Student/import`,
       method: "POST",
       ...params,

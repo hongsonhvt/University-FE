@@ -10,35 +10,29 @@
  */
 
 import {
-  ChangeApproveCreateData,
-  ChangeCreateData,
-  ChangeDenyCreateData,
-  ChangeDetailData,
-  ChangeListData,
-  ChangeListParams,
-  SessionListData,
-  SessionListParams,
+  ApproveData,
+  CreateChangeRequestData,
+  DenyData,
+  GetAllChangeRequestData,
+  GetAllChangeRequestParams,
+  GetChangeRequestByIdData,
+  GetSessionData,
+  GetSessionParams,
   UMApplicationChangeSessionRequestCommandsCreateCreateCommandData,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Session<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Session<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Session
-   * @name SessionList
+   * @name GetSession
    * @request GET:/Session
-   * @response `200` `SessionListData` Success
+   * @response `200` `GetSessionData` Success
    */
-  sessionList = (query: SessionListParams, params: RequestParams = {}) =>
-    this.http.request<SessionListData, any>({
+  getSession = (query: GetSessionParams, params: RequestParams = {}) =>
+    this.request<GetSessionData>({
       path: `/Session`,
       method: "GET",
       query: query,
@@ -48,12 +42,12 @@ export class Session<SecurityDataType = unknown> {
    * No description
    *
    * @tags Session
-   * @name ChangeList
+   * @name GetAllChangeRequest
    * @request GET:/Session/change
-   * @response `200` `ChangeListData` Success
+   * @response `200` `GetAllChangeRequestData` Success
    */
-  changeList = (query: ChangeListParams, params: RequestParams = {}) =>
-    this.http.request<ChangeListData, any>({
+  getAllChangeRequest = (query: GetAllChangeRequestParams, params: RequestParams = {}) =>
+    this.request<GetAllChangeRequestData>({
       path: `/Session/change`,
       method: "GET",
       query: query,
@@ -63,12 +57,12 @@ export class Session<SecurityDataType = unknown> {
    * No description
    *
    * @tags Session
-   * @name ChangeDetail
+   * @name GetChangeRequestById
    * @request GET:/Session/change/{id}
-   * @response `200` `ChangeDetailData` Success
+   * @response `200` `GetChangeRequestByIdData` Success
    */
-  changeDetail = (id: string, params: RequestParams = {}) =>
-    this.http.request<ChangeDetailData, any>({
+  getChangeRequestById = (id: string, params: RequestParams = {}) =>
+    this.request<GetChangeRequestByIdData>({
       path: `/Session/change/${id}`,
       method: "GET",
       ...params,
@@ -77,12 +71,12 @@ export class Session<SecurityDataType = unknown> {
    * No description
    *
    * @tags Session
-   * @name ChangeApproveCreate
+   * @name Approve
    * @request POST:/Session/change/{id}/approve
-   * @response `200` `ChangeApproveCreateData` Success
+   * @response `200` `ApproveData` Success
    */
-  changeApproveCreate = (id: string, params: RequestParams = {}) =>
-    this.http.request<ChangeApproveCreateData, any>({
+  approve = (id: string, params: RequestParams = {}) =>
+    this.request<ApproveData>({
       path: `/Session/change/${id}/approve`,
       method: "POST",
       ...params,
@@ -91,12 +85,12 @@ export class Session<SecurityDataType = unknown> {
    * No description
    *
    * @tags Session
-   * @name ChangeDenyCreate
+   * @name Deny
    * @request POST:/Session/change/{id}/deny
-   * @response `200` `ChangeDenyCreateData` Success
+   * @response `200` `DenyData` Success
    */
-  changeDenyCreate = (id: string, params: RequestParams = {}) =>
-    this.http.request<ChangeDenyCreateData, any>({
+  deny = (id: string, params: RequestParams = {}) =>
+    this.request<DenyData>({
       path: `/Session/change/${id}/deny`,
       method: "POST",
       ...params,
@@ -105,16 +99,16 @@ export class Session<SecurityDataType = unknown> {
    * No description
    *
    * @tags Session
-   * @name ChangeCreate
+   * @name CreateChangeRequest
    * @request POST:/Session/{id}/change
-   * @response `200` `ChangeCreateData` Success
+   * @response `200` `CreateChangeRequestData` Success
    */
-  changeCreate = (
+  createChangeRequest = (
     id: string,
     data: UMApplicationChangeSessionRequestCommandsCreateCreateCommandData,
     params: RequestParams = {},
   ) =>
-    this.http.request<ChangeCreateData, any>({
+    this.request<CreateChangeRequestData>({
       path: `/Session/${id}/change`,
       method: "POST",
       body: data,

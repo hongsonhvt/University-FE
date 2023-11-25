@@ -10,47 +10,43 @@
  */
 
 import {
-  ProgramCreateData,
-  ProgramDeleteData,
-  ProgramDetailData,
-  ProgramListData,
-  ProgramUpdateData,
+  DeleteProgramData,
+  GetProgramByIdData,
+  GetProgramData,
+  GetProgramParams,
+  PostProgramData,
+  PutProgramData,
   UMApplicationProgramCommandsCreateCreateCommand,
   UMApplicationProgramCommandsUpdateUpdateCommandData,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Program<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Program<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Program
-   * @name ProgramList
+   * @name GetProgram
    * @request GET:/Program
-   * @response `200` `ProgramListData` Success
+   * @response `200` `GetProgramData` Success
    */
-  programList = (params: RequestParams = {}) =>
-    this.http.request<ProgramListData, any>({
+  getProgram = (query: GetProgramParams, params: RequestParams = {}) =>
+    this.request<GetProgramData>({
       path: `/Program`,
       method: "GET",
+      query: query,
       ...params,
     });
   /**
    * No description
    *
    * @tags Program
-   * @name ProgramCreate
+   * @name PostProgram
    * @request POST:/Program
-   * @response `200` `ProgramCreateData` Success
+   * @response `200` `PostProgramData` Success
    */
-  programCreate = (data: UMApplicationProgramCommandsCreateCreateCommand, params: RequestParams = {}) =>
-    this.http.request<ProgramCreateData, any>({
+  postProgram = (data: UMApplicationProgramCommandsCreateCreateCommand, params: RequestParams = {}) =>
+    this.request<PostProgramData>({
       path: `/Program`,
       method: "POST",
       body: data,
@@ -61,12 +57,12 @@ export class Program<SecurityDataType = unknown> {
    * No description
    *
    * @tags Program
-   * @name ProgramDetail
+   * @name GetProgramById
    * @request GET:/Program/{id}
-   * @response `200` `ProgramDetailData` Success
+   * @response `200` `GetProgramByIdData` Success
    */
-  programDetail = (id: string, params: RequestParams = {}) =>
-    this.http.request<ProgramDetailData, any>({
+  getProgramById = (id: string, params: RequestParams = {}) =>
+    this.request<GetProgramByIdData>({
       path: `/Program/${id}`,
       method: "GET",
       ...params,
@@ -75,12 +71,12 @@ export class Program<SecurityDataType = unknown> {
    * No description
    *
    * @tags Program
-   * @name ProgramUpdate
+   * @name PutProgram
    * @request PUT:/Program/{id}
-   * @response `200` `ProgramUpdateData` Success
+   * @response `200` `PutProgramData` Success
    */
-  programUpdate = (id: string, data: UMApplicationProgramCommandsUpdateUpdateCommandData, params: RequestParams = {}) =>
-    this.http.request<ProgramUpdateData, any>({
+  putProgram = (id: string, data: UMApplicationProgramCommandsUpdateUpdateCommandData, params: RequestParams = {}) =>
+    this.request<PutProgramData>({
       path: `/Program/${id}`,
       method: "PUT",
       body: data,
@@ -91,12 +87,12 @@ export class Program<SecurityDataType = unknown> {
    * No description
    *
    * @tags Program
-   * @name ProgramDelete
+   * @name DeleteProgram
    * @request DELETE:/Program/{id}
-   * @response `200` `ProgramDeleteData` Success
+   * @response `200` `DeleteProgramData` Success
    */
-  programDelete = (id: string, params: RequestParams = {}) =>
-    this.http.request<ProgramDeleteData, any>({
+  deleteProgram = (id: string, params: RequestParams = {}) =>
+    this.request<DeleteProgramData>({
       path: `/Program/${id}`,
       method: "DELETE",
       ...params,

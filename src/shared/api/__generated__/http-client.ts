@@ -9,8 +9,12 @@
  * ---------------------------------------------------------------
  */
 
+import { createStandaloneToast } from "@chakra-ui/react";
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, ResponseType } from "axios";
 import axios from "axios";
+import { UMApplicationCommonModelsError } from "./data-contracts";
+
+const { toast } = createStandaloneToast();
 
 export type QueryParamsType = Record<string | number, any>;
 
@@ -54,10 +58,26 @@ export class HttpClient<SecurityDataType = unknown> {
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "http://localhost:5123" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
+
+    this.instance.interceptors.response.use(
+      (config) => config,
+      (error) => {
+        toast({
+          title: "An error occurred.",
+          description: error.response.data.errors[0].message,
+          position: "top-right",
+          status: "error",
+          duration: 15000,
+          isClosable: true,
+        });
+
+        return Promise.reject(error);
+      },
+    );
   }
 
   public setSecurityData = (data: SecurityDataType | null) => {
@@ -101,7 +121,13 @@ export class HttpClient<SecurityDataType = unknown> {
     }, new FormData());
   }
 
-  public request = async <T = any, _E = any>({
+  public request = async <
+    T extends {
+      data?: any;
+      errors?: UMApplicationCommonModelsError[] | null;
+      success?: boolean;
+    },
+  >({
     secure,
     path,
     type,

@@ -10,31 +10,25 @@
  */
 
 import {
-  AuthListData,
-  AuthPartialUpdateData,
-  LoginCreateData,
+  GetMySummaryInfoData,
+  LoginData,
   UMApplicationAuthCommandsLoginLoginCommand,
   UMApplicationAuthCommandsUpdateMyInfoUpdateMyInfoCommand,
+  UpdateInformationData,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Auth<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Auth<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Auth
-   * @name AuthList
+   * @name GetMySummaryInfo
    * @request GET:/Auth
-   * @response `200` `AuthListData` Success
+   * @response `200` `GetMySummaryInfoData` Success
    */
-  authList = (params: RequestParams = {}) =>
-    this.http.request<AuthListData, any>({
+  getMySummaryInfo = (params: RequestParams = {}) =>
+    this.request<GetMySummaryInfoData>({
       path: `/Auth`,
       method: "GET",
       ...params,
@@ -43,12 +37,12 @@ export class Auth<SecurityDataType = unknown> {
    * No description
    *
    * @tags Auth
-   * @name AuthPartialUpdate
+   * @name UpdateInformation
    * @request PATCH:/Auth
-   * @response `200` `AuthPartialUpdateData` Success
+   * @response `200` `UpdateInformationData` Success
    */
-  authPartialUpdate = (data: UMApplicationAuthCommandsUpdateMyInfoUpdateMyInfoCommand, params: RequestParams = {}) =>
-    this.http.request<AuthPartialUpdateData, any>({
+  updateInformation = (data: UMApplicationAuthCommandsUpdateMyInfoUpdateMyInfoCommand, params: RequestParams = {}) =>
+    this.request<UpdateInformationData>({
       path: `/Auth`,
       method: "PATCH",
       body: data,
@@ -59,12 +53,12 @@ export class Auth<SecurityDataType = unknown> {
    * No description
    *
    * @tags Auth
-   * @name LoginCreate
+   * @name Login
    * @request POST:/Auth/login
-   * @response `200` `LoginCreateData` Success
+   * @response `200` `LoginData` Success
    */
-  loginCreate = (data: UMApplicationAuthCommandsLoginLoginCommand, params: RequestParams = {}) =>
-    this.http.request<LoginCreateData, any>({
+  login = (data: UMApplicationAuthCommandsLoginLoginCommand, params: RequestParams = {}) =>
+    this.request<LoginData>({
       path: `/Auth/login`,
       method: "POST",
       body: data,

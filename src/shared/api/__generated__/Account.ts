@@ -9,26 +9,20 @@
  * ---------------------------------------------------------------
  */
 
-import { AccountDetailData, AccountPartialUpdateData, ScoreListData } from "./data-contracts";
+import { GetAccountByIdData, GetMyScoresData, PatchAccountData } from "./data-contracts";
 import { HttpClient, RequestParams } from "./http-client";
 
-export class Account<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class Account<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags Account
-   * @name ScoreList
+   * @name GetMyScores
    * @request GET:/Account/score
-   * @response `200` `ScoreListData` Success
+   * @response `200` `GetMyScoresData` Success
    */
-  scoreList = (params: RequestParams = {}) =>
-    this.http.request<ScoreListData, any>({
+  getMyScores = (params: RequestParams = {}) =>
+    this.request<GetMyScoresData>({
       path: `/Account/score`,
       method: "GET",
       ...params,
@@ -37,12 +31,12 @@ export class Account<SecurityDataType = unknown> {
    * No description
    *
    * @tags Account
-   * @name AccountDetail
+   * @name GetAccountById
    * @request GET:/Account/{userId}
-   * @response `200` `AccountDetailData` Success
+   * @response `200` `GetAccountByIdData` Success
    */
-  accountDetail = (userId: string, params: RequestParams = {}) =>
-    this.http.request<AccountDetailData, any>({
+  getAccountById = (userId: string, params: RequestParams = {}) =>
+    this.request<GetAccountByIdData>({
       path: `/Account/${userId}`,
       method: "GET",
       ...params,
@@ -51,12 +45,12 @@ export class Account<SecurityDataType = unknown> {
    * No description
    *
    * @tags Account
-   * @name AccountPartialUpdate
+   * @name PatchAccount
    * @request PATCH:/Account/{userId}
-   * @response `200` `AccountPartialUpdateData` Success
+   * @response `200` `PatchAccountData` Success
    */
-  accountPartialUpdate = (userId: string, params: RequestParams = {}) =>
-    this.http.request<AccountPartialUpdateData, any>({
+  patchAccount = (userId: string, params: RequestParams = {}) =>
+    this.request<PatchAccountData>({
       path: `/Account/${userId}`,
       method: "PATCH",
       ...params,

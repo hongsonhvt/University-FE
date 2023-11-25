@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import {
-  Box,
   Button,
   Modal,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
   ModalFooter,
+  ModalHeader,
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 import appdev from '../../Images/app-dev.png';
 import './Course.css';
 
@@ -116,7 +115,7 @@ const courses = [
   // Thêm thông tin khóa học khác ở đây
 ];
 
-const Course = () => {
+const CourseComponent = () => {
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -141,8 +140,8 @@ const Course = () => {
         </div>
       </div>
       <div className='course-area'>
-        {courses.map((course) => (
-          <div key={course.id} className='course-row'>
+        {courses.map((course, idx) => (
+          <div key={idx} className='course-row'>
             <div className='course-item'>
               <div
                 className='course-item-title'
@@ -211,4 +210,4 @@ const Course = () => {
   );
 };
 
-export default Course;
+export { CourseComponent };

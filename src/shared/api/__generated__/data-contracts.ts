@@ -9,110 +9,104 @@
  * ---------------------------------------------------------------
  */
 
-export type AcademicYearListData = UMApplicationCommonModelsResultSystemString;
+export type AddStudentsData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type AcademicYearUpdateData = UMApplicationCommonModelsResultSystemBoolean;
+export type ApproveData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type AccountDetailData = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;
+export type AssignToManagementClassesData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type AccountPartialUpdateData = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;
+export type AssignToStudentsData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type AuthListData = UMApplicationCommonModelsResultUMApplicationAuthQueriesMySummaryInfoMySummaryInfoDto;
+export type AssignToTeacherData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type AuthPartialUpdateData = UMApplicationCommonModelsResultSystemBoolean;
+export type CreateChangeRequestData =
+  UMApplicationCommonModelsResultUMApplicationChangeSessionRequestQueriesGetByIdGetByIdDto;
 
-export type ChangeApproveCreateData = UMApplicationCommonModelsResultSystemBoolean;
+export type DeleteCourseClassData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type ChangeCreateData = UMApplicationCommonModelsResultUMApplicationChangeSessionRequestQueriesGetByIdGetByIdDto;
+export type DeleteCourseData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type ChangeDenyCreateData = UMApplicationCommonModelsResultSystemBoolean;
+export type DeleteManagementClassData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type ChangeDetailData = UMApplicationCommonModelsResultUMApplicationChangeSessionRequestQueriesGetByIdGetByIdDto;
+export type DeleteProgramData = UMApplicationCommonModelsResultSystemBoolean;
 
-export type ChangeListData =
+export type DenyData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type GetAcademicYearData = UMApplicationCommonModelsResultSystemString;
+
+export type GetAccountByIdData = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;
+
+export type GetAllChangeRequestData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationChangeSessionRequestQueriesGetAllGetAllDto;
 
-export interface ChangeListParams {
+export interface GetAllChangeRequestParams {
   /** @format int32 */
   Status?: number;
 }
 
-export type CourseClassCreateData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetChangeRequestByIdData =
+  UMApplicationCommonModelsResultUMApplicationChangeSessionRequestQueriesGetByIdGetByIdDto;
 
-export type CourseClassDeleteData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetCourseByIdData = UMApplicationCommonModelsResultUMApplicationCourseQueriesGetByIdGetByIdDto;
 
-export type CourseClassDetailData = UMApplicationCommonModelsResultUMApplicationCourseClassQueriesGetByIdGetByIdDto;
+export type GetCourseClassByIdData = UMApplicationCommonModelsResultUMApplicationCourseClassQueriesGetByIdGetByIdDto;
 
-export type CourseClassListData =
+export type GetCourseClassData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMDomainDtosCourseClassICourseClass;
 
-export interface CourseClassListParams {
-  AcademicYear?: string;
+export interface GetCourseClassParams {
+  academicYear?: string;
+  q?: string;
   /** @format int32 */
-  Status?: number;
+  status?: number;
 }
 
-export type CourseClassUpdateData = UMApplicationCommonModelsResultSystemBoolean;
-
-export type CourseCreateData = UMApplicationCommonModelsResultUMApplicationCourseQueriesGetByIdGetByIdDto;
-
-export type CourseDeleteData = UMApplicationCommonModelsResultSystemBoolean;
-
-export type CourseDetailData = UMApplicationCommonModelsResultUMApplicationCourseQueriesGetByIdGetByIdDto;
-
-export type CourseListData =
+export type GetCourseData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationCourseQueriesGetAllGetAllDto;
 
-export type CourseUpdateData = UMApplicationCommonModelsResultSystemBoolean;
+export interface GetCourseParams {
+  q?: string;
+}
 
-export type ImportCreateData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetCourseRecommendationStudentsData =
+  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationCourseClassQueriesGetRecommendationStudentsGetRecommendationStudentsDto;
 
-export type LoginCreateData = UMApplicationCommonModelsResultUMDomainDtosGeneratedToken;
-
-export type ManagementClassCreateData = UMApplicationCommonModelsResultSystemBoolean;
-
-export type ManagementClassCreateResult = UMApplicationCommonModelsResultSystemBoolean;
-
-export type ManagementClassDeleteData = UMApplicationCommonModelsResultSystemBoolean;
-
-export type ManagementClassDetailData =
+export type GetManagementClassByIdData =
   UMApplicationCommonModelsResultUMApplicationManagementClassQueriesGetByIdGetByIdDto;
 
-export type ManagementClassListData =
+export type GetManagementClassData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationManagementClassQueriesGetAllGetAllDto;
 
-export interface ManagementClassListParams {
+export interface GetManagementClassParams {
   AcademicYear?: string;
 }
 
-export type ManagementClassUpdateData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetMyScoresData =
+  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetScoresGetScoresDto;
 
-export type ProgramCreateData = UMApplicationCommonModelsResultUMApplicationProgramQueriesGetByIdGetByIdDto;
+export type GetMySummaryInfoData = UMApplicationCommonModelsResultUMApplicationAuthQueriesMySummaryInfoMySummaryInfoDto;
 
-export type ProgramDeleteData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetProgramByIdData = UMApplicationCommonModelsResultUMApplicationProgramQueriesGetByIdGetByIdDto;
 
-export type ProgramDetailData = UMApplicationCommonModelsResultUMApplicationProgramQueriesGetByIdGetByIdDto;
-
-export type ProgramListData =
+export type GetProgramData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationProgramQueriesGetAllGetAllDto;
 
-export type ProgramUpdateData = UMApplicationCommonModelsResultSystemBoolean;
+export interface GetProgramParams {
+  q?: string;
+}
 
-export type RecommendationsListData = UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableSystemString;
+export type GetRecommendationsData = UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableSystemString;
 
-export type ScoreDetailData =
+export type GetScoreData =
+  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetScoresGetScoresDto;
+
+export type GetScoresData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationCourseClassQueriesGetScoresGetScoresDto;
 
-export type ScoreDetailResult =
-  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetScoresGetScoresDto;
-
-export type ScoreListData =
-  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetScoresGetScoresDto;
-
-export type SessionListData =
+export type GetSessionData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationSessionQueriesGetAllGetAllDto;
 
-export interface SessionListParams {
+export interface GetSessionParams {
   /** @format date-time */
   Date?: string;
   /** @format date-time */
@@ -123,128 +117,300 @@ export interface SessionListParams {
   Slot?: number;
 }
 
-export type StudentCreateData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetStudentData =
+  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetAllGetAllDto;
 
-export type StudentCreateResult = UMApplicationCommonModelsResultSystemBoolean;
+export interface GetStudentParams {
+  Query?: string;
+}
 
-export type StudentUpdateData = UMApplicationCommonModelsResultSystemBoolean;
+export type GetTeacherData =
+  UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationTeacherQueriesGetAllGetAllDto;
 
-/** @format int32 */
+export interface GetTeacherParams {
+  Query?: string;
+}
+
+export type ImportData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type LoginData = UMApplicationCommonModelsResultUMDomainDtosGeneratedToken;
+
+export type PatchAccountData = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;
+
+export type PostCourseClassData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type PostCourseData = UMApplicationCommonModelsResultUMApplicationCourseQueriesGetByIdGetByIdDto;
+
+export type PostManagementClassData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type PostProgramData = UMApplicationCommonModelsResultUMApplicationProgramQueriesGetByIdGetByIdDto;
+
+export type PostTeacherData = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;
+
+export type PutAcademicYearData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type PutCourseClassData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type PutCourseData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type PutManagementClassData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type PutProgramData = UMApplicationCommonModelsResultSystemBoolean;
+
+/**
+ *
+ *
+ * 0 = Sunday
+ *
+ * 1 = Monday
+ *
+ * 2 = Tuesday
+ *
+ * 3 = Wednesday
+ *
+ * 4 = Thursday
+ *
+ * 5 = Friday
+ *
+ * 6 = Saturday
+ * @format int32
+ */
 export enum SystemDayOfWeek {
-  Value0 = 0,
-  Value1 = 1,
-  Value2 = 2,
-  Value3 = 3,
-  Value4 = 4,
-  Value5 = 5,
-  Value6 = 6,
+  Sunday = 0,
+  Monday = 1,
+  Tuesday = 2,
+  Wednesday = 3,
+  Thursday = 4,
+  Friday = 5,
+  Saturday = 6,
 }
 
-/** @format int32 */
+/**
+ *
+ *
+ * 100 = Continue
+ *
+ * 101 = SwitchingProtocols
+ *
+ * 102 = Processing
+ *
+ * 103 = EarlyHints
+ *
+ * 200 = OK
+ *
+ * 201 = Created
+ *
+ * 202 = Accepted
+ *
+ * 203 = NonAuthoritativeInformation
+ *
+ * 204 = NoContent
+ *
+ * 205 = ResetContent
+ *
+ * 206 = PartialContent
+ *
+ * 207 = MultiStatus
+ *
+ * 208 = AlreadyReported
+ *
+ * 226 = IMUsed
+ *
+ * 300 = Ambiguous
+ *
+ * 301 = Moved
+ *
+ * 302 = Redirect
+ *
+ * 303 = RedirectMethod
+ *
+ * 304 = NotModified
+ *
+ * 305 = UseProxy
+ *
+ * 306 = Unused
+ *
+ * 307 = RedirectKeepVerb
+ *
+ * 308 = PermanentRedirect
+ *
+ * 400 = BadRequest
+ *
+ * 401 = Unauthorized
+ *
+ * 402 = PaymentRequired
+ *
+ * 403 = Forbidden
+ *
+ * 404 = NotFound
+ *
+ * 405 = MethodNotAllowed
+ *
+ * 406 = NotAcceptable
+ *
+ * 407 = ProxyAuthenticationRequired
+ *
+ * 408 = RequestTimeout
+ *
+ * 409 = Conflict
+ *
+ * 410 = Gone
+ *
+ * 411 = LengthRequired
+ *
+ * 412 = PreconditionFailed
+ *
+ * 413 = RequestEntityTooLarge
+ *
+ * 414 = RequestUriTooLong
+ *
+ * 415 = UnsupportedMediaType
+ *
+ * 416 = RequestedRangeNotSatisfiable
+ *
+ * 417 = ExpectationFailed
+ *
+ * 421 = MisdirectedRequest
+ *
+ * 422 = UnprocessableEntity
+ *
+ * 423 = Locked
+ *
+ * 424 = FailedDependency
+ *
+ * 426 = UpgradeRequired
+ *
+ * 428 = PreconditionRequired
+ *
+ * 429 = TooManyRequests
+ *
+ * 431 = RequestHeaderFieldsTooLarge
+ *
+ * 451 = UnavailableForLegalReasons
+ *
+ * 500 = InternalServerError
+ *
+ * 501 = NotImplemented
+ *
+ * 502 = BadGateway
+ *
+ * 503 = ServiceUnavailable
+ *
+ * 504 = GatewayTimeout
+ *
+ * 505 = HttpVersionNotSupported
+ *
+ * 506 = VariantAlsoNegotiates
+ *
+ * 507 = InsufficientStorage
+ *
+ * 508 = LoopDetected
+ *
+ * 510 = NotExtended
+ *
+ * 511 = NetworkAuthenticationRequired
+ * @format int32
+ */
 export enum SystemNetHttpStatusCode {
-  Value100 = 100,
-  Value101 = 101,
-  Value102 = 102,
-  Value103 = 103,
-  Value200 = 200,
-  Value201 = 201,
-  Value202 = 202,
-  Value203 = 203,
-  Value204 = 204,
-  Value205 = 205,
-  Value206 = 206,
-  Value207 = 207,
-  Value208 = 208,
-  Value226 = 226,
-  Value300 = 300,
-  Value301 = 301,
-  Value302 = 302,
-  Value303 = 303,
-  Value304 = 304,
-  Value305 = 305,
-  Value306 = 306,
-  Value307 = 307,
-  Value308 = 308,
-  Value400 = 400,
-  Value401 = 401,
-  Value402 = 402,
-  Value403 = 403,
-  Value404 = 404,
-  Value405 = 405,
-  Value406 = 406,
-  Value407 = 407,
-  Value408 = 408,
-  Value409 = 409,
-  Value410 = 410,
-  Value411 = 411,
-  Value412 = 412,
-  Value413 = 413,
-  Value414 = 414,
-  Value415 = 415,
-  Value416 = 416,
-  Value417 = 417,
-  Value421 = 421,
-  Value422 = 422,
-  Value423 = 423,
-  Value424 = 424,
-  Value426 = 426,
-  Value428 = 428,
-  Value429 = 429,
-  Value431 = 431,
-  Value451 = 451,
-  Value500 = 500,
-  Value501 = 501,
-  Value502 = 502,
-  Value503 = 503,
-  Value504 = 504,
-  Value505 = 505,
-  Value506 = 506,
-  Value507 = 507,
-  Value508 = 508,
-  Value510 = 510,
-  Value511 = 511,
+  Continue = 100,
+  SwitchingProtocols = 101,
+  Processing = 102,
+  EarlyHints = 103,
+  OK = 200,
+  Created = 201,
+  Accepted = 202,
+  NonAuthoritativeInformation = 203,
+  NoContent = 204,
+  ResetContent = 205,
+  PartialContent = 206,
+  MultiStatus = 207,
+  AlreadyReported = 208,
+  IMUsed = 226,
+  Ambiguous = 300,
+  Moved = 301,
+  Redirect = 302,
+  RedirectMethod = 303,
+  NotModified = 304,
+  UseProxy = 305,
+  Unused = 306,
+  RedirectKeepVerb = 307,
+  PermanentRedirect = 308,
+  BadRequest = 400,
+  Unauthorized = 401,
+  PaymentRequired = 402,
+  Forbidden = 403,
+  NotFound = 404,
+  MethodNotAllowed = 405,
+  NotAcceptable = 406,
+  ProxyAuthenticationRequired = 407,
+  RequestTimeout = 408,
+  Conflict = 409,
+  Gone = 410,
+  LengthRequired = 411,
+  PreconditionFailed = 412,
+  RequestEntityTooLarge = 413,
+  RequestUriTooLong = 414,
+  UnsupportedMediaType = 415,
+  RequestedRangeNotSatisfiable = 416,
+  ExpectationFailed = 417,
+  MisdirectedRequest = 421,
+  UnprocessableEntity = 422,
+  Locked = 423,
+  FailedDependency = 424,
+  UpgradeRequired = 426,
+  PreconditionRequired = 428,
+  TooManyRequests = 429,
+  RequestHeaderFieldsTooLarge = 431,
+  UnavailableForLegalReasons = 451,
+  InternalServerError = 500,
+  NotImplemented = 501,
+  BadGateway = 502,
+  ServiceUnavailable = 503,
+  GatewayTimeout = 504,
+  HttpVersionNotSupported = 505,
+  VariantAlsoNegotiates = 506,
+  InsufficientStorage = 507,
+  LoopDetected = 508,
+  NotExtended = 510,
+  NetworkAuthenticationRequired = 511,
 }
-
-export type TeacherCreateData = UMApplicationCommonModelsResultSystemBoolean;
-
-export type TeacherCreateResult = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;
 
 export interface UMApplicationAcademicYearCommandsUpdateCurrentUpdateCurrentCommand {
-  academicYear?: string | null;
+  academicYear?: string;
 }
 
 export interface UMApplicationAccountQueriesGetByIdGetByIdDto {
   address?: string | null;
-  firstName?: string | null;
+  firstName?: string;
   /** @format uuid */
   id?: string;
   isMale?: boolean | null;
-  lastName?: string | null;
-  middleName?: string | null;
+  lastName?: string;
+  middleName?: string;
   phoneNumber?: string | null;
-  role?: string | null;
+  role?: string;
 }
 
 export interface UMApplicationAuthCommandsLoginLoginCommand {
-  password?: string | null;
-  userName?: string | null;
+  password?: string;
+  userName?: string;
 }
 
 export interface UMApplicationAuthCommandsUpdateMyInfoUpdateMyInfoCommand {
-  address?: string | null;
-  phoneNumber?: string | null;
+  address?: string;
+  phoneNumber?: string;
 }
 
 export interface UMApplicationAuthQueriesMySummaryInfoMySummaryInfoDto {
   address?: string | null;
-  firstName?: string | null;
+  firstName?: string;
   /** @format uuid */
   id?: string;
   isMale?: boolean | null;
-  lastName?: string | null;
-  middleName?: string | null;
+  lastName?: string;
+  middleName?: string;
   phoneNumber?: string | null;
-  role?: string | null;
+  role?: string;
 }
 
 export interface UMApplicationChangeSessionRequestCommandsCreateCreateCommandData {
@@ -270,12 +436,21 @@ export interface UMApplicationChangeSessionRequestQueriesGetAllGetAllDto {
   /** @format date-time */
   oldStartAt?: string;
   session?: UMApplicationChangeSessionRequestQueriesGetAllGetByIdDtoSession;
-  status?: UMDomainEnumsCourseClassEChangeSessionRequestStatus;
+  /**
+   *
+   *
+   * 1 = Active
+   *
+   * 2 = Approved
+   *
+   * 4 = Denied
+   */
+  status?: UMDomainEnumsChangeSessionRequestEChangeSessionRequestStatus;
 }
 
 export interface UMApplicationChangeSessionRequestQueriesGetAllGetByIdDtoCourseClass {
-  academicYear?: string | null;
-  name?: string | null;
+  academicYear?: string;
+  name?: string;
   teacher?: UMApplicationChangeSessionRequestQueriesGetAllGetByIdDtoTeacher;
 }
 
@@ -286,13 +461,13 @@ export interface UMApplicationChangeSessionRequestQueriesGetAllGetByIdDtoSession
 }
 
 export interface UMApplicationChangeSessionRequestQueriesGetAllGetByIdDtoTeacher {
-  firstName?: string | null;
+  firstName?: string;
   /** @format uuid */
   id?: string;
   isMale?: boolean;
-  lastName?: string | null;
-  middleName?: string | null;
-  teacherId?: string | null;
+  lastName?: string;
+  middleName?: string;
+  teacherId?: string;
 }
 
 export interface UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDto {
@@ -311,12 +486,21 @@ export interface UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDto {
   /** @format date-time */
   oldStartAt?: string;
   session?: UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDtoSession;
-  status?: UMDomainEnumsCourseClassEChangeSessionRequestStatus;
+  /**
+   *
+   *
+   * 1 = Active
+   *
+   * 2 = Approved
+   *
+   * 4 = Denied
+   */
+  status?: UMDomainEnumsChangeSessionRequestEChangeSessionRequestStatus;
 }
 
 export interface UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDtoCourseClass {
-  academicYear?: string | null;
-  name?: string | null;
+  academicYear?: string;
+  name?: string;
   teacher?: UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDtoTeacher;
 }
 
@@ -327,18 +511,143 @@ export interface UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDtoSessio
 }
 
 export interface UMApplicationChangeSessionRequestQueriesGetByIdGetByIdDtoTeacher {
-  firstName?: string | null;
+  firstName?: string;
   /** @format uuid */
   id?: string;
   isMale?: boolean;
-  lastName?: string | null;
-  middleName?: string | null;
-  teacherId?: string | null;
+  lastName?: string;
+  middleName?: string;
+  teacherId?: string;
 }
 
 export interface UMApplicationCommonModelsError {
+  /**
+   *
+   *
+   * 100 = Continue
+   *
+   * 101 = SwitchingProtocols
+   *
+   * 102 = Processing
+   *
+   * 103 = EarlyHints
+   *
+   * 200 = OK
+   *
+   * 201 = Created
+   *
+   * 202 = Accepted
+   *
+   * 203 = NonAuthoritativeInformation
+   *
+   * 204 = NoContent
+   *
+   * 205 = ResetContent
+   *
+   * 206 = PartialContent
+   *
+   * 207 = MultiStatus
+   *
+   * 208 = AlreadyReported
+   *
+   * 226 = IMUsed
+   *
+   * 300 = Ambiguous
+   *
+   * 301 = Moved
+   *
+   * 302 = Redirect
+   *
+   * 303 = RedirectMethod
+   *
+   * 304 = NotModified
+   *
+   * 305 = UseProxy
+   *
+   * 306 = Unused
+   *
+   * 307 = RedirectKeepVerb
+   *
+   * 308 = PermanentRedirect
+   *
+   * 400 = BadRequest
+   *
+   * 401 = Unauthorized
+   *
+   * 402 = PaymentRequired
+   *
+   * 403 = Forbidden
+   *
+   * 404 = NotFound
+   *
+   * 405 = MethodNotAllowed
+   *
+   * 406 = NotAcceptable
+   *
+   * 407 = ProxyAuthenticationRequired
+   *
+   * 408 = RequestTimeout
+   *
+   * 409 = Conflict
+   *
+   * 410 = Gone
+   *
+   * 411 = LengthRequired
+   *
+   * 412 = PreconditionFailed
+   *
+   * 413 = RequestEntityTooLarge
+   *
+   * 414 = RequestUriTooLong
+   *
+   * 415 = UnsupportedMediaType
+   *
+   * 416 = RequestedRangeNotSatisfiable
+   *
+   * 417 = ExpectationFailed
+   *
+   * 421 = MisdirectedRequest
+   *
+   * 422 = UnprocessableEntity
+   *
+   * 423 = Locked
+   *
+   * 424 = FailedDependency
+   *
+   * 426 = UpgradeRequired
+   *
+   * 428 = PreconditionRequired
+   *
+   * 429 = TooManyRequests
+   *
+   * 431 = RequestHeaderFieldsTooLarge
+   *
+   * 451 = UnavailableForLegalReasons
+   *
+   * 500 = InternalServerError
+   *
+   * 501 = NotImplemented
+   *
+   * 502 = BadGateway
+   *
+   * 503 = ServiceUnavailable
+   *
+   * 504 = GatewayTimeout
+   *
+   * 505 = HttpVersionNotSupported
+   *
+   * 506 = VariantAlsoNegotiates
+   *
+   * 507 = InsufficientStorage
+   *
+   * 508 = LoopDetected
+   *
+   * 510 = NotExtended
+   *
+   * 511 = NetworkAuthenticationRequired
+   */
   code?: SystemNetHttpStatusCode;
-  message?: string | null;
+  message?: string;
   property?: string | null;
 }
 
@@ -349,61 +658,79 @@ export interface UMApplicationCommonModelsResultSystemBoolean {
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableSystemString {
-  data?: string[] | null;
+  data?: string[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationChangeSessionRequestQueriesGetAllGetAllDto {
-  data?: UMApplicationChangeSessionRequestQueriesGetAllGetAllDto[] | null;
+  data?: UMApplicationChangeSessionRequestQueriesGetAllGetAllDto[];
+  errors?: UMApplicationCommonModelsError[] | null;
+  success?: boolean;
+}
+
+export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationCourseClassQueriesGetRecommendationStudentsGetRecommendationStudentsDto {
+  data?: UMApplicationCourseClassQueriesGetRecommendationStudentsGetRecommendationStudentsDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationCourseClassQueriesGetScoresGetScoresDto {
-  data?: UMApplicationCourseClassQueriesGetScoresGetScoresDto[] | null;
+  data?: UMApplicationCourseClassQueriesGetScoresGetScoresDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationCourseQueriesGetAllGetAllDto {
-  data?: UMApplicationCourseQueriesGetAllGetAllDto[] | null;
+  data?: UMApplicationCourseQueriesGetAllGetAllDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationManagementClassQueriesGetAllGetAllDto {
-  data?: UMApplicationManagementClassQueriesGetAllGetAllDto[] | null;
+  data?: UMApplicationManagementClassQueriesGetAllGetAllDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationProgramQueriesGetAllGetAllDto {
-  data?: UMApplicationProgramQueriesGetAllGetAllDto[] | null;
+  data?: UMApplicationProgramQueriesGetAllGetAllDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationSessionQueriesGetAllGetAllDto {
-  data?: UMApplicationSessionQueriesGetAllGetAllDto[] | null;
+  data?: UMApplicationSessionQueriesGetAllGetAllDto[];
+  errors?: UMApplicationCommonModelsError[] | null;
+  success?: boolean;
+}
+
+export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetAllGetAllDto {
+  data?: UMApplicationStudentQueriesGetAllGetAllDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationStudentQueriesGetScoresGetScoresDto {
-  data?: UMApplicationStudentQueriesGetScoresGetScoresDto[] | null;
+  data?: UMApplicationStudentQueriesGetScoresGetScoresDto[];
+  errors?: UMApplicationCommonModelsError[] | null;
+  success?: boolean;
+}
+
+export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationTeacherQueriesGetAllGetAllDto {
+  data?: UMApplicationTeacherQueriesGetAllGetAllDto[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMDomainDtosCourseClassICourseClass {
-  data?: UMDomainDtosCourseClassICourseClass[] | null;
+  data?: UMDomainDtosCourseClassICourseClass[];
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
 
 export interface UMApplicationCommonModelsResultSystemString {
-  data?: string | null;
+  data?: string;
   errors?: UMApplicationCommonModelsError[] | null;
   success?: boolean;
 }
@@ -457,15 +784,15 @@ export interface UMApplicationCommonModelsResultUMDomainDtosGeneratedToken {
 }
 
 export interface UMApplicationCourseClassCommandsAssignToManagementClassesAssignToManagementClassesCommandData {
-  managementClassesId?: string[] | null;
+  managementClassesId?: string[];
 }
 
 export interface UMApplicationCourseClassCommandsAssignToStudentsAssignToStudentsCommandData {
-  studentsId?: string[] | null;
+  studentsId?: string[];
 }
 
 export interface UMApplicationCourseClassCommandsBulkCreateBulkCreateCommand {
-  courseId?: string | null;
+  courseId?: string;
   /** @format int32 */
   numberOfClasses?: number;
   /** @format int32 */
@@ -474,36 +801,37 @@ export interface UMApplicationCourseClassCommandsBulkCreateBulkCreateCommand {
   startAt?: string;
 }
 
-export interface UMApplicationCourseClassCommandsUpdateScoreUpdateScoreCommandData {
-  /** @format double */
-  score?: number;
-}
-
 export interface UMApplicationCourseClassCommandsUpdateUpdateCommandData {
-  name?: string | null;
+  name?: string;
   /** @format int32 */
   sessionsCount?: number;
-  slots?: string | null;
+  slots?: string;
   /** @format date-time */
   startAt?: string;
-  teacherId?: string | null;
 }
 
 export interface UMApplicationCourseClassQueriesGetByIdGetByIdDto {
-  academicYear?: string | null;
-  courseId?: string | null;
+  academicYear?: string;
+  course?: UMApplicationCourseClassQueriesGetByIdGetByIdDtoCourse;
   /** @format uuid */
   id?: string;
-  name?: string | null;
-  sessions?: UMApplicationCourseClassQueriesGetByIdGetByIdDtoSession[] | null;
+  name?: string;
+  sessions?: UMApplicationCourseClassQueriesGetByIdGetByIdDtoSession[];
   /** @format int32 */
   sessionsCount?: number;
-  slots?: UMApplicationCourseClassQueriesGetByIdGetByIdDtoSlot[] | null;
+  slots?: UMApplicationCourseClassQueriesGetByIdGetByIdDtoSlot[];
   /** @format date-time */
   startAt?: string;
   /** @format int32 */
   status?: number;
   teacher?: UMApplicationCourseClassQueriesGetByIdGetByIdDtoTeacher;
+}
+
+export interface UMApplicationCourseClassQueriesGetByIdGetByIdDtoCourse {
+  courseId?: string;
+  /** @format uuid */
+  id?: string;
+  name?: string;
 }
 
 export interface UMApplicationCourseClassQueriesGetByIdGetByIdDtoSession {
@@ -519,20 +847,56 @@ export interface UMApplicationCourseClassQueriesGetByIdGetByIdDtoSession {
 export interface UMApplicationCourseClassQueriesGetByIdGetByIdDtoSlot {
   /** @format int32 */
   daySlot?: number;
+  /**
+   *
+   *
+   * 0 = Sunday
+   *
+   * 1 = Monday
+   *
+   * 2 = Tuesday
+   *
+   * 3 = Wednesday
+   *
+   * 4 = Thursday
+   *
+   * 5 = Friday
+   *
+   * 6 = Saturday
+   */
   weekDay?: SystemDayOfWeek;
 }
 
 export interface UMApplicationCourseClassQueriesGetByIdGetByIdDtoSlotCourseClass {
-  academicYear?: string | null;
-  name?: string | null;
+  academicYear?: string;
+  name?: string;
 }
 
 export interface UMApplicationCourseClassQueriesGetByIdGetByIdDtoTeacher {
-  firstName?: string | null;
+  firstName?: string;
+  /** @format uuid */
+  id?: string;
   isMale?: boolean;
-  lastName?: string | null;
-  middleName?: string | null;
-  teacherId?: string | null;
+  lastName?: string;
+  middleName?: string;
+  teacherId?: string;
+}
+
+export interface UMApplicationCourseClassQueriesGetRecommendationStudentsGetRecommendationStudentsDto {
+  firstName?: string;
+  /** @format uuid */
+  id?: string;
+  isMale?: boolean;
+  lastName?: string;
+  managementClass?: UMApplicationCourseClassQueriesGetRecommendationStudentsGetRecommendationStudentsDtoManagementClass;
+  middleName?: string;
+  studentId?: string;
+}
+
+export interface UMApplicationCourseClassQueriesGetRecommendationStudentsGetRecommendationStudentsDtoManagementClass {
+  /** @format uuid */
+  id?: string;
+  name?: string;
 }
 
 export interface UMApplicationCourseClassQueriesGetScoresGetScoresDto {
@@ -543,54 +907,54 @@ export interface UMApplicationCourseClassQueriesGetScoresGetScoresDto {
 }
 
 export interface UMApplicationCourseClassQueriesGetScoresGetScoresDtoManagementClass {
-  academicYear?: string | null;
+  academicYear?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
 }
 
 export interface UMApplicationCourseClassQueriesGetScoresGetScoresDtoStudent {
-  firstName?: string | null;
+  firstName?: string;
   /** @format uuid */
   id?: string;
   isMale?: boolean;
-  lastName?: string | null;
+  lastName?: string;
   managementClass?: UMApplicationCourseClassQueriesGetScoresGetScoresDtoManagementClass;
-  middleName?: string | null;
-  studentId?: string | null;
+  middleName?: string;
+  studentId?: string;
 }
 
 export interface UMApplicationCourseCommandsCreateCreateCommand {
-  courseId?: string | null;
-  name?: string | null;
-  programs?: string[] | null;
+  courseId?: string;
+  name?: string;
+  programs?: string[];
 }
 
 export interface UMApplicationCourseCommandsUpdateUpdateCommandData {
-  courseId?: string | null;
-  name?: string | null;
+  courseId?: string;
+  name?: string;
 }
 
 export interface UMApplicationCourseQueriesGetAllGetAllDto {
-  courseId?: string | null;
+  courseId?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
 }
 
 export interface UMApplicationCourseQueriesGetByIdGetByIdDto {
-  courseClasses?: UMApplicationCourseQueriesGetByIdGetByIdDtoCourseClass[] | null;
-  courseId?: string | null;
+  courseClasses?: UMApplicationCourseQueriesGetByIdGetByIdDtoCourseClass[];
+  courseId?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
 }
 
 export interface UMApplicationCourseQueriesGetByIdGetByIdDtoCourseClass {
-  academicYear?: string | null;
+  academicYear?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
   /** @format int32 */
   sessionsCount?: number;
   /** @format date-time */
@@ -600,73 +964,93 @@ export interface UMApplicationCourseQueriesGetByIdGetByIdDtoCourseClass {
 }
 
 export interface UMApplicationManagementClassCommandsAddStudentsAddStudentsCommandData {
-  studentsId?: string[] | null;
+  studentsId?: string[];
 }
 
 export interface UMApplicationManagementClassCommandsBulkCreateBulkCreateCommand {
   /** @format int32 */
   numberOfClasses?: number;
-  programId?: string | null;
+  programId?: string;
 }
 
 export interface UMApplicationManagementClassCommandsUpdateUpdateCommandData {
-  name?: string | null;
+  name?: string;
 }
 
 export interface UMApplicationManagementClassQueriesGetAllGetAllDto {
+  academicYear?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
+  program?: UMApplicationManagementClassQueriesGetAllGetAllDtoProgram;
+  /** @format int32 */
+  studentsCount?: number;
+}
+
+export interface UMApplicationManagementClassQueriesGetAllGetAllDtoProgram {
+  /** @format uuid */
+  id?: string;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationManagementClassQueriesGetByIdGetByIdDto {
-  academicYear?: string | null;
+  academicYear?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
-  students?: UMApplicationManagementClassQueriesGetByIdGetByIdDtoStudent[] | null;
+  name?: string;
+  program?: UMApplicationManagementClassQueriesGetByIdGetByIdDtoProgram;
+  students?: UMApplicationManagementClassQueriesGetByIdGetByIdDtoStudent[];
+}
+
+export interface UMApplicationManagementClassQueriesGetByIdGetByIdDtoProgram {
+  /** @format uuid */
+  id?: string;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationManagementClassQueriesGetByIdGetByIdDtoStudent {
-  firstName?: string | null;
+  firstName?: string;
   /** @format uuid */
   id?: string;
   isMale?: boolean;
-  lastName?: string | null;
-  middleName?: string | null;
-  studentId?: string | null;
+  lastName?: string;
+  middleName?: string;
+  studentId?: string;
 }
 
 export interface UMApplicationProgramCommandsCreateCreateCommand {
-  name?: string | null;
-  programId?: string | null;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationProgramCommandsUpdateUpdateCommandData {
-  name?: string | null;
-  programId?: string | null;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationProgramQueriesGetAllGetAllDto {
   /** @format uuid */
   id?: string;
-  name?: string | null;
-  programId?: string | null;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationProgramQueriesGetByIdGetByIdDto {
-  courses?: UMApplicationProgramQueriesGetByIdGetByIdDtoCourse[] | null;
+  courses?: UMApplicationProgramQueriesGetByIdGetByIdDtoCourse[];
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationProgramQueriesGetByIdGetByIdDtoCourse {
-  courseId?: string | null;
+  courseId?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
-  programId?: string | null;
+  name?: string;
+  programId?: string;
 }
 
 export interface UMApplicationSessionQueriesGetAllGetAllDto {
@@ -682,17 +1066,34 @@ export interface UMApplicationSessionQueriesGetAllGetAllDto {
 }
 
 export interface UMApplicationSessionQueriesGetAllGetAllDtoCourse {
-  courseId?: string | null;
+  courseId?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
 }
 
 export interface UMApplicationSessionQueriesGetAllGetAllDtoCourseClass {
   course?: UMApplicationSessionQueriesGetAllGetAllDtoCourse;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
+}
+
+export interface UMApplicationStudentQueriesGetAllGetAllDto {
+  firstName?: string;
+  /** @format uuid */
+  id?: string;
+  isMale?: boolean;
+  lastName?: string;
+  managementClass?: UMApplicationStudentQueriesGetAllGetAllDtoManagementClass;
+  middleName?: string;
+  studentId?: string;
+}
+
+export interface UMApplicationStudentQueriesGetAllGetAllDtoManagementClass {
+  /** @format uuid */
+  id?: string;
+  name?: string;
 }
 
 export interface UMApplicationStudentQueriesGetScoresGetScoresDto {
@@ -703,54 +1104,114 @@ export interface UMApplicationStudentQueriesGetScoresGetScoresDto {
 }
 
 export interface UMApplicationStudentQueriesGetScoresGetScoresDtoCourse {
-  courseId?: string | null;
+  courseId?: string;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
 }
 
 export interface UMApplicationStudentQueriesGetScoresGetScoresDtoCourseClass {
   course?: UMApplicationStudentQueriesGetScoresGetScoresDtoCourse;
   /** @format uuid */
   id?: string;
-  name?: string | null;
+  name?: string;
   /** @format int32 */
   sessionsCount?: number;
-  /** @format int32 */
-  status?: number;
+  /**
+   *
+   *
+   * 1 = Draft
+   *
+   * 2 = Active
+   *
+   * 4 = Finished
+   */
+  status?: UMDomainEnumsCourseClassECourseClassStatus;
   teacher?: UMApplicationStudentQueriesGetScoresGetScoresDtoTeacher;
 }
 
 export interface UMApplicationStudentQueriesGetScoresGetScoresDtoTeacher {
-  firstName?: string | null;
+  firstName?: string;
   isMale?: boolean;
-  lastName?: string | null;
-  middleName?: string | null;
-  teacherId?: string | null;
+  lastName?: string;
+  middleName?: string;
+  teacherId?: string;
 }
 
 export interface UMApplicationTeacherCommandsCreateCreateCommand {
-  address?: string | null;
-  email?: string | null;
-  firstName?: string | null;
+  address?: string;
+  email?: string;
+  firstName?: string;
   isMale?: boolean;
-  lastName?: string | null;
-  middleName?: string | null;
-  teacherId?: string | null;
-  userName?: string | null;
+  lastName?: string;
+  middleName?: string;
+  teacherId?: string;
+  userName?: string;
 }
 
-export type UMDomainDtosCourseClassICourseClass = object;
+export interface UMApplicationTeacherQueriesGetAllGetAllDto {
+  firstName?: string;
+  /** @format uuid */
+  id?: string;
+  isMale?: boolean;
+  lastName?: string;
+  middleName?: string;
+  teacherId?: string;
+}
+
+export interface UMDomainDtosCourseClassICourseClass {
+  academicYear?: string;
+  /** @format uuid */
+  id?: string;
+  name?: string;
+  /** @format int32 */
+  sessionsCount?: number;
+  /** @format date-time */
+  startAt?: string;
+  /** @format int32 */
+  status?: number;
+}
 
 export interface UMDomainDtosGeneratedToken {
   /** @format date-time */
   expiration?: string;
-  token?: string | null;
+  token?: string;
 }
 
-/** @format int32 */
-export enum UMDomainEnumsCourseClassEChangeSessionRequestStatus {
-  Value1 = 1,
-  Value2 = 2,
-  Value4 = 4,
+/**
+ *
+ *
+ * 1 = Active
+ *
+ * 2 = Approved
+ *
+ * 4 = Denied
+ * @format int32
+ */
+export enum UMDomainEnumsChangeSessionRequestEChangeSessionRequestStatus {
+  Active = 1,
+  Approved = 2,
+  Denied = 4,
 }
+
+/**
+ *
+ *
+ * 1 = Draft
+ *
+ * 2 = Active
+ *
+ * 4 = Finished
+ * @format int32
+ */
+export enum UMDomainEnumsCourseClassECourseClassStatus {
+  Draft = 1,
+  Active = 2,
+  Finished = 4,
+}
+
+export type UpdateInformationData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type UpdateScoreData = UMApplicationCommonModelsResultSystemBoolean;
+
+export type UpdateScorePayload = Record<string, number>;

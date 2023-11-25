@@ -10,36 +10,30 @@
  */
 
 import {
-  ManagementClassCreateResult,
-  ManagementClassDeleteData,
-  ManagementClassDetailData,
-  ManagementClassListData,
-  ManagementClassListParams,
-  ManagementClassUpdateData,
-  StudentCreateResult,
+  AddStudentsData,
+  DeleteManagementClassData,
+  GetManagementClassByIdData,
+  GetManagementClassData,
+  GetManagementClassParams,
+  PostManagementClassData,
+  PutManagementClassData,
   UMApplicationManagementClassCommandsAddStudentsAddStudentsCommandData,
   UMApplicationManagementClassCommandsBulkCreateBulkCreateCommand,
   UMApplicationManagementClassCommandsUpdateUpdateCommandData,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class ManagementClass<SecurityDataType = unknown> {
-  http: HttpClient<SecurityDataType>;
-
-  constructor(http: HttpClient<SecurityDataType>) {
-    this.http = http;
-  }
-
+export class ManagementClass<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @tags ManagementClass
-   * @name ManagementClassList
+   * @name GetManagementClass
    * @request GET:/ManagementClass
-   * @response `200` `ManagementClassListData` Success
+   * @response `200` `GetManagementClassData` Success
    */
-  managementClassList = (query: ManagementClassListParams, params: RequestParams = {}) =>
-    this.http.request<ManagementClassListData, any>({
+  getManagementClass = (query: GetManagementClassParams, params: RequestParams = {}) =>
+    this.request<GetManagementClassData>({
       path: `/ManagementClass`,
       method: "GET",
       query: query,
@@ -49,15 +43,15 @@ export class ManagementClass<SecurityDataType = unknown> {
    * No description
    *
    * @tags ManagementClass
-   * @name ManagementClassCreate
+   * @name PostManagementClass
    * @request POST:/ManagementClass
-   * @response `200` `ManagementClassCreateResult` Success
+   * @response `200` `PostManagementClassData` Success
    */
-  managementClassCreate = (
+  postManagementClass = (
     data: UMApplicationManagementClassCommandsBulkCreateBulkCreateCommand,
     params: RequestParams = {},
   ) =>
-    this.http.request<ManagementClassCreateResult, any>({
+    this.request<PostManagementClassData>({
       path: `/ManagementClass`,
       method: "POST",
       body: data,
@@ -68,12 +62,12 @@ export class ManagementClass<SecurityDataType = unknown> {
    * No description
    *
    * @tags ManagementClass
-   * @name ManagementClassDetail
+   * @name GetManagementClassById
    * @request GET:/ManagementClass/{id}
-   * @response `200` `ManagementClassDetailData` Success
+   * @response `200` `GetManagementClassByIdData` Success
    */
-  managementClassDetail = (id: string, params: RequestParams = {}) =>
-    this.http.request<ManagementClassDetailData, any>({
+  getManagementClassById = (id: string, params: RequestParams = {}) =>
+    this.request<GetManagementClassByIdData>({
       path: `/ManagementClass/${id}`,
       method: "GET",
       ...params,
@@ -82,16 +76,16 @@ export class ManagementClass<SecurityDataType = unknown> {
    * No description
    *
    * @tags ManagementClass
-   * @name ManagementClassUpdate
+   * @name PutManagementClass
    * @request PUT:/ManagementClass/{id}
-   * @response `200` `ManagementClassUpdateData` Success
+   * @response `200` `PutManagementClassData` Success
    */
-  managementClassUpdate = (
+  putManagementClass = (
     id: string,
     data: UMApplicationManagementClassCommandsUpdateUpdateCommandData,
     params: RequestParams = {},
   ) =>
-    this.http.request<ManagementClassUpdateData, any>({
+    this.request<PutManagementClassData>({
       path: `/ManagementClass/${id}`,
       method: "PUT",
       body: data,
@@ -102,12 +96,12 @@ export class ManagementClass<SecurityDataType = unknown> {
    * No description
    *
    * @tags ManagementClass
-   * @name ManagementClassDelete
+   * @name DeleteManagementClass
    * @request DELETE:/ManagementClass/{id}
-   * @response `200` `ManagementClassDeleteData` Success
+   * @response `200` `DeleteManagementClassData` Success
    */
-  managementClassDelete = (id: string, params: RequestParams = {}) =>
-    this.http.request<ManagementClassDeleteData, any>({
+  deleteManagementClass = (id: string, params: RequestParams = {}) =>
+    this.request<DeleteManagementClassData>({
       path: `/ManagementClass/${id}`,
       method: "DELETE",
       ...params,
@@ -116,16 +110,16 @@ export class ManagementClass<SecurityDataType = unknown> {
    * No description
    *
    * @tags ManagementClass
-   * @name StudentCreate
+   * @name AddStudents
    * @request POST:/ManagementClass/{id}/student
-   * @response `200` `StudentCreateResult` Success
+   * @response `200` `AddStudentsData` Success
    */
-  studentCreate = (
+  addStudents = (
     id: string,
     data: UMApplicationManagementClassCommandsAddStudentsAddStudentsCommandData,
     params: RequestParams = {},
   ) =>
-    this.http.request<StudentCreateResult, any>({
+    this.request<AddStudentsData>({
       path: `/ManagementClass/${id}/student`,
       method: "POST",
       body: data,
