@@ -8,12 +8,14 @@ import { StatusConstantValue } from '@constants';
 import { useDebounce } from '@uidotdev/usehooks';
 import { useEffect, useRef, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useIsFirstRender } from '@uidotdev/usehooks';
 
 type InputSearchParams = {
   status: StatusConstantValue;
   onSearch: (searchText: string) => void;
   debounceTime?: number;
   placeholder?: string;
+  skipFirstRender?: boolean;
 };
 
 const InputSearch = ({
@@ -21,14 +23,14 @@ const InputSearch = ({
   onSearch,
   debounceTime,
   placeholder,
+  skipFirstRender,
 }: InputSearchParams) => {
   const [searchText, setSearchText] = useState('');
   const debouncedSearch = useDebounce(searchText, debounceTime ?? 300);
-  const first = useRef(true);
+  const isFirstRender = useIsFirstRender();
 
   useEffect(() => {
-    if (first.current) {
-      first.current = false;
+    if (skipFirstRender && isFirstRender) {
       return;
     }
 

@@ -13,6 +13,7 @@ import {
   Td,
   Th,
   Thead,
+  Link,
   Tr,
   useToast,
 } from '@chakra-ui/react';
@@ -23,6 +24,7 @@ import { RootState, courseClassDetailsGetScores } from '@redux';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const Score = () => {
   const courseClassId = useSelector(
@@ -127,7 +129,17 @@ const Score = () => {
                   <Td>{score.student?.middleName}</Td>
                   <Td>{score.student?.lastName}</Td>
                   <Td>{getGender(score.student!)}</Td>
-                  <Td>{score.student?.managementClass?.name}</Td>
+                  <Td>
+                    <Link
+                      as={ReactRouterLink}
+                      to={
+                        '/management-class/' +
+                        score.student?.managementClass?.id
+                      }
+                    >
+                      {score.student?.managementClass?.name}
+                    </Link>
+                  </Td>
                   <Td>
                     {status === 'read' ? (
                       score.score

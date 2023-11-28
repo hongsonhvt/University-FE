@@ -35,7 +35,7 @@ courseClassListMiddleware.startListening({
     listenerApi.cancelActiveListeners();
 
     new Course()
-      .getCourse()
+      .getCourse({})
       .then((res) => {
         listenerApi.dispatch(CourseClassList_SetCourses(res.data.data ?? []));
       })

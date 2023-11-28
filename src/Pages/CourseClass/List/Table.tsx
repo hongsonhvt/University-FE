@@ -48,8 +48,22 @@ const ListTable = ({ courseClasses, user }: ListProps) => {
                     {courseClass?.name}
                   </Link>
                 </Td>
-                <Td>{courseClass.course?.courseId}</Td>
-                <Td>{courseClass.course?.name}</Td>
+                <Td>
+                  <Link
+                    as={ReactRouterLink}
+                    to={'/course/' + courseClass.course.id}
+                  >
+                    {courseClass.course?.courseId}
+                  </Link>
+                </Td>
+                <Td>
+                  <Link
+                    as={ReactRouterLink}
+                    to={'/course/' + courseClass.course.id}
+                  >
+                    {courseClass.course?.name}
+                  </Link>
+                </Td>
                 <Td textAlign='center'>{courseClass?.sessionsCount}</Td>
                 <Td textAlign='center'>{status}</Td>
                 {user?.role !== 'Teacher' && (

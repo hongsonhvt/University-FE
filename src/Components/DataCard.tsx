@@ -11,7 +11,7 @@ import {
 
 export type DataCardProps = {
   heading: string;
-  data: { header: string; label?: string | number | null }[];
+  data: { header: string; label?: JSX.Element | string | number | null }[];
 };
 
 const DataCard = ({ heading, data }: DataCardProps) => {
@@ -28,9 +28,13 @@ const DataCard = ({ heading, data }: DataCardProps) => {
               <Heading size='xs' textTransform='uppercase'>
                 {row.header}
               </Heading>
-              <Text mt='2' fontSize='sm'>
-                {row.label}
-              </Text>
+              {typeof row.label === 'object' ? (
+                row.label
+              ) : (
+                <Text mt='2' fontSize='sm'>
+                  {row.label}
+                </Text>
+              )}
             </Box>
           ))}
         </Stack>

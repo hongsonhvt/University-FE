@@ -19,6 +19,7 @@ import {
   Grid,
   GridItem,
   Input,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -36,7 +37,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import { DataCard } from '@components';
+import { DataCard, DataCardProps } from '@components';
 import { ValidationMessage } from '@constants';
 import { getGender, setStateWithApiFallback } from '@functions';
 import { StringHelper } from '@helpers';
@@ -46,7 +47,11 @@ import { SelectItemType } from '@models';
 import { Select } from 'chakra-react-select';
 import { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
+import {
+  Link as ReactRouterLink,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 
 type ContentProps = {
   managementClass: UMApplicationManagementClassQueriesGetByIdGetByIdDto;
@@ -368,10 +373,17 @@ const Actions = ({ reload, managementClass }: ActionsProps) => {
 };
 
 const InfoCard = ({ managementClass }: ContentProps) => {
-  const data: { header: string; label?: string | number }[] = [
+  const data: DataCardProps['data'] = [
     {
       header: 'Program',
-      label: managementClass.program?.name,
+      label: (
+        <Link
+          as={ReactRouterLink}
+          to={'/program/' + managementClass.program?.id}
+        >
+          {managementClass.program?.name}
+        </Link>
+      ),
     },
     {
       header: 'Academic year',

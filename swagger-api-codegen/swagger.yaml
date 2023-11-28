@@ -697,7 +697,11 @@ paths:
       tags:
         - ManagementClass
       parameters:
-        - name: AcademicYear
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: academicYear
           in: query
           schema:
             type: string

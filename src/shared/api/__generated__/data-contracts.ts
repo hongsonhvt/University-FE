@@ -78,7 +78,8 @@ export type GetManagementClassData =
   UMApplicationCommonModelsResultSystemCollectionsGenericIEnumerableUMApplicationManagementClassQueriesGetAllGetAllDto;
 
 export interface GetManagementClassParams {
-  AcademicYear?: string;
+  academicYear?: string;
+  q?: string;
 }
 
 export type GetMyScoresData =

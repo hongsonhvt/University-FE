@@ -8,6 +8,7 @@ import {
   CardHeader,
   Flex,
   Heading,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -31,6 +32,7 @@ import { StringHelper } from '@helpers';
 import { RootState } from '@redux';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 const InfoCard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -55,7 +57,11 @@ const InfoCard = () => {
   const info: { header: string; label?: string | JSX.Element }[] = [
     {
       header: 'Course',
-      label: `${course.name} (${course.courseId})`,
+      label: (
+        <Link as={ReactRouterLink} to={'/course/' + courseClass.course?.id}>
+          {course.name} ({course.courseId})
+        </Link>
+      ),
     },
     {
       header: 'Status',
@@ -171,4 +177,3 @@ const InfoCard = () => {
 };
 
 export { InfoCard };
-

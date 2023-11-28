@@ -1,9 +1,6 @@
 import {
   ManagementClass,
-  Program,
   UMApplicationManagementClassCommandsBulkCreateBulkCreateCommand,
-  UMApplicationManagementClassQueriesGetAllGetAllDto,
-  UMApplicationProgramQueriesGetAllGetAllDto,
 } from '@api';
 import {
   Button,
@@ -11,9 +8,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Grid,
-  GridItem,
-  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -27,55 +21,36 @@ import {
   NumberInputField,
   NumberInputStepper,
   Select,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
 import { ValidationMessage } from '@constants';
-import { setStateWithApiFallback } from '@functions';
-import { useWaitUserInfo } from '@hooks';
-import { MainData } from '@layout';
-import { User } from '@redux';
-import { AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
+import { ManagementClassList_Reload, RootState } from '@redux';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 type CreateFormData = {
   programId: string;
   numberOfClasses: number;
 };
 
-type AddButtonProps = {
-  reload: () => void;
-};
+const AddButton = () => {
+  const programs = useSelector(
+    (s: RootState) => s.managementClassList.programs
+  );
 
-const AddButton = ({ reload }: AddButtonProps) => {
   const {
     handleSubmit,
     register,
     reset,
     formState: { errors },
   } = useForm<CreateFormData>();
-  const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const user = useWaitUserInfo();
-  const [programs, setPrograms] = useState<
-    UMApplicationProgramQueriesGetAllGetAllDto[] | undefined
-  >([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (user) {
-      setStateWithApiFallback(new Program().getProgram(), setPrograms, []);
-    }
-  }, [user]);
+  const toast = useToast();
+  const dispatch = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit: SubmitHandler<CreateFormData> = async (data) => {
     setIsSubmitting(true);
@@ -94,7 +69,8 @@ const AddButton = ({ reload }: AddButtonProps) => {
         isClosable: true,
       });
       onClickClose();
-      reload();
+
+      dispatch(ManagementClassList_Reload());
     } catch {
     } finally {
       setIsSubmitting(false);
@@ -175,95 +151,12 @@ const AddButton = ({ reload }: AddButtonProps) => {
   );
 };
 
-type ActionsProps = {
-  reload: () => void;
-};
-
-const Actions = ({ reload }: ActionsProps) => {
+const Actions = () => {
   return (
     <Flex justify='end'>
-      <AddButton reload={reload}></AddButton>
+      <AddButton />
     </Flex>
   );
 };
 
-type ListProps = {
-  managementClasses: UMApplicationManagementClassQueriesGetAllGetAllDto[];
-  user: User;
-};
-
-const List = ({ managementClasses, user }: ListProps) => {
-  return (
-    <MainData data={managementClasses}>
-      <TableContainer>
-        <Table variant='striped' size='sm'>
-          <Thead>
-            <Tr>
-              <Th>#</Th>
-              <Th>Class name</Th>
-              <Th>Students number</Th>
-              <Th>Program</Th>
-              <Th textAlign='center'>Academic Year</Th>
-            </Tr>
-          </Thead>
-
-          <Tbody>
-            {managementClasses?.map((managementClass, idx) => {
-              return (
-                <Tr key={idx}>
-                  <Td>{idx + 1}</Td>
-                  <Td>
-                    <Link as={ReactRouterLink} to={managementClass.id}>
-                      {managementClass?.name}
-                    </Link>
-                  </Td>
-                  <Td>{managementClass.studentsCount}</Td>
-                  <Td>{managementClass.program?.name}</Td>
-                  <Td textAlign='center'>{managementClass.academicYear}</Td>
-                </Tr>
-              );
-            })}
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </MainData>
-  );
-};
-
-const ManagementClassList = () => {
-  const user = useWaitUserInfo();
-  const [managementClasses, setManagementClasses] = useState<
-    UMApplicationManagementClassQueriesGetAllGetAllDto[] | undefined
-  >();
-
-  const getManagementClasses = () => {
-    setStateWithApiFallback(
-      new ManagementClass().getManagementClass({}) as Promise<
-        AxiosResponse<any>
-      >,
-      setManagementClasses,
-      []
-    );
-  };
-
-  useEffect(() => {
-    if (user) {
-      getManagementClasses();
-    }
-  }, [user]);
-
-  return (
-    <Grid rowGap='3'>
-      <GridItem>
-        <Actions reload={getManagementClasses}></Actions>
-      </GridItem>
-      <GridItem>
-        {user && managementClasses && (
-          <List user={user} managementClasses={managementClasses}></List>
-        )}
-      </GridItem>
-    </Grid>
-  );
-};
-
-export { ManagementClassList };
+export { Actions };

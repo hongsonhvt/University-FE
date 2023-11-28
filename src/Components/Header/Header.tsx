@@ -59,31 +59,33 @@ const Header = () => {
                 {user ? (
                   <>
                     {user.firstName} {user.lastName}
+                    <Avatar
+                      size='sm'
+                      name={`${user.firstName} ${user.lastName}`}
+                    />
                   </>
                 ) : (
                   <Spinner></Spinner>
                 )}
-                <Avatar
-                  size={'sm'}
-                  src={'https://avatars.dicebear.com/api/male/username.svg'}
-                />
               </Flex>
             </MenuButton>
 
             <MenuList alignItems={'center'}>
-              <Center>
-                <Avatar
-                  size={'2xl'}
-                  src={'https://avatars.dicebear.com/api/male/username.svg'}
-                />
-              </Center>
-
               {user && (
-                <Center>
-                  <p>
-                    {user.firstName} {user.lastName}
-                  </p>
-                </Center>
+                <>
+                  <Center>
+                    <Avatar
+                      size='2xl'
+                      name={`${user.firstName} ${user.lastName}`}
+                    />
+                  </Center>
+
+                  <Center>
+                    <p>
+                      {user.firstName} {user.lastName}
+                    </p>
+                  </Center>
+                </>
               )}
 
               <MenuDivider />
