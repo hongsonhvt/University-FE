@@ -25,6 +25,7 @@ import { PersonalInformation } from 'src/Pages/PersonalInformation/PersonalInfor
 import { ProgramDetails } from 'src/Pages/Program/Details';
 import { ProgramList } from 'src/Pages/Program/List';
 import { Score } from 'src/Pages/Score/Score';
+import { Settings } from 'src/Pages/Settings/Settings';
 import { StudentList } from 'src/Pages/Student/List';
 import { TeacherList } from 'src/Pages/Teacher/List';
 
@@ -127,6 +128,14 @@ export const routes: RouteObject[] = [
         ),
       },
       {
+        path: 'settings',
+        element: (
+          <ProtectedComponent role='Admin'>
+            <Settings />
+          </ProtectedComponent>
+        ),
+      },
+      {
         path: 'student',
         element: (
           <ProtectedComponent role='Admin'>
@@ -170,7 +179,7 @@ export const routesByRole: Record<RoleConstantValue, SideBarItem[]> = {
   ],
 };
 
-export const routeIcon: Record<ValidRoutes, IconType> = {
+export const routeIcon: { [R in ValidRoutes]?: IconType } = {
   '/home': AiFillHome,
   '/calendar': AiFillCalendar,
   '/course': AiFillGold,

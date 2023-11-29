@@ -14,6 +14,7 @@ import {
   Spinner,
   Stack,
 } from '@chakra-ui/react';
+import { ProtectedComponent } from '@layout';
 import { RootState, logOut } from '@redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
@@ -92,6 +93,11 @@ const Header = () => {
               <MenuItem as={ReactRouterLink} to='/me'>
                 My information
               </MenuItem>
+              <ProtectedComponent role='Admin'>
+                <MenuItem as={ReactRouterLink} to='/settings'>
+                  Settings
+                </MenuItem>
+              </ProtectedComponent>
               <MenuItem onClick={onClickLogOut}>Logout</MenuItem>
             </MenuList>
           </Menu>

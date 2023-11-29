@@ -6,6 +6,7 @@ const validRoutes = [
   '/course-class',
   '/management-class',
   '/score',
+  '/settings',
   '/student',
   '/teacher',
 ] as const;
