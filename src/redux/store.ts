@@ -8,6 +8,7 @@ import managementClassListReducer from './feature/managementClassListSlice';
 import programDetailsReducer from './feature/programDetailsSlice';
 import programListReducer from './feature/programListSlice';
 import studentListReducer from './feature/studentListSlice';
+import teacherListReducer from './feature/teacherListSlice';
 import {
   authMiddleware,
   courseClassDetailsMiddleware,
@@ -17,6 +18,7 @@ import {
   managementClassListMiddleware,
   programDetailsMiddleware,
   programListMiddleware,
+  studentListMiddleware,
   teacherListMiddleware,
 } from './middlewares';
 import {
@@ -29,6 +31,7 @@ import {
   ProgramDetailsState,
   ProgramListState,
   StudentListState,
+  TeacherListState,
 } from './states';
 
 export const store = configureStore({
@@ -42,6 +45,7 @@ export const store = configureStore({
     programDetails: programDetailsReducer,
     programList: programListReducer,
     studentList: studentListReducer,
+    teacherList: teacherListReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(
@@ -54,6 +58,7 @@ export const store = configureStore({
       programDetailsMiddleware.middleware,
       programListMiddleware.middleware,
       studentListMiddleware.middleware,
+      teacherListMiddleware.middleware
     ),
 });
 
@@ -68,5 +73,6 @@ export type RootState = ReturnType<
     programDetails: ProgramDetailsState;
     programList: ProgramListState;
     studentList: StudentListState;
+    teacherList: TeacherListState;
   }
 >;

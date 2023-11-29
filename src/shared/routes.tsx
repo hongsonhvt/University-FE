@@ -26,6 +26,7 @@ import { ProgramDetails } from 'src/Pages/Program/Details';
 import { ProgramList } from 'src/Pages/Program/List';
 import { Score } from 'src/Pages/Score/Score';
 import { StudentList } from 'src/Pages/Student/List';
+import { TeacherList } from 'src/Pages/Teacher/List';
 
 export const routes: RouteObject[] = [
   {
@@ -133,6 +134,14 @@ export const routes: RouteObject[] = [
           </ProtectedComponent>
         ),
       },
+      {
+        path: 'teacher',
+        element: (
+          <ProtectedComponent role='Admin'>
+            <TeacherList />
+          </ProtectedComponent>
+        ),
+      },
     ],
   },
 ];
@@ -146,6 +155,7 @@ export const routesByRole: Record<RoleConstantValue, SideBarItem[]> = {
     { name: 'Course class', url: '/course-class' },
     { name: 'Management class', url: '/management-class' },
     { name: 'Student', url: '/student' },
+    { name: 'Teacher', url: '/teacher' },
   ],
   [RoleConstant.student]: [
     { name: 'Home', url: '/home' },
@@ -169,4 +179,5 @@ export const routeIcon: Record<ValidRoutes, IconType> = {
   '/course-class': SiGoogleclassroom,
   '/score': PiExamFill,
   '/student': PiStudent,
+  '/teacher': PiChalkboardTeacher,
 };
