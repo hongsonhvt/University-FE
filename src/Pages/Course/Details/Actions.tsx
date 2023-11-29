@@ -23,7 +23,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { ValidationMessage } from '@constants';
-import { CourseDetails_Reset } from '@redux';
+import { CourseDetails_Reload } from '@redux';
 import { RetrieveData } from '@types';
 import { useEffect, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -76,7 +76,7 @@ const EditButton = ({ course }: ButtonProps) => {
       });
       onClickClose();
 
-      dispatch(CourseDetails_Reset());
+      dispatch(CourseDetails_Reload());
     } catch {
     } finally {
       setIsSubmitting(false);
