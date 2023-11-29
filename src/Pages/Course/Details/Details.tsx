@@ -1,14 +1,13 @@
-import { Course, UMApplicationCourseQueriesGetByIdGetByIdDto } from '@api';
 import { Grid, GridItem } from '@chakra-ui/react';
-import { setStateWithApiFallback } from '@functions';
+import { useWaitUserInfo } from '@hooks';
 import { BackToPage, MainData } from '@layout';
-import { useEffect, useState } from 'react';
+import { CourseDetails_Get, CourseDetails_Reset, RootState } from '@redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Actions } from './Actions';
 import { InfoCard } from './InfoCard';
-import { useDispatch, useSelector } from 'react-redux';
-import { CourseDetails_Get, CourseDetails_Reset, RootState } from '@redux';
-import { useWaitUserInfo } from '@hooks';
+import { CourseClassList } from './CourseClassList';
 
 const CourseDetails = () => {
   const course = useSelector((s: RootState) => s.courseDetails.course);
@@ -41,6 +40,9 @@ const CourseDetails = () => {
         <Grid rowGap={3}>
           <GridItem>
             <InfoCard course={course!} />
+          </GridItem>
+          <GridItem>
+            <CourseClassList courseClasses={course?.courseClasses} />
           </GridItem>
         </Grid>
       </BackToPage>

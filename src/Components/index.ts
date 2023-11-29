@@ -4,3 +4,4 @@ export * from './SideBar';
 export * from './DataCard';
 export * from './DropZone';
 export * from './InputSearch';
+export * from './StatusBadge';

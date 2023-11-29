@@ -45,7 +45,11 @@ const CourseList = ({ courses }: CourseListProps) => {
                       {course.courseId}
                     </Link>
                   </Td>
-                  <Td>{course.name}</Td>
+                  <Td>
+                    <Link as={ReactRouterLink} to={'/course/' + course.id}>
+                      {course.name}
+                    </Link>
+                  </Td>
                 </Tr>
               );
             })}

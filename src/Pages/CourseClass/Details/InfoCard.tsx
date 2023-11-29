@@ -1,6 +1,4 @@
-import { UMDomainEnumsCourseClassECourseClassStatus } from '@api';
 import {
-  Badge,
   Box,
   Button,
   Card,
@@ -24,10 +22,10 @@ import {
   Text,
   Th,
   Thead,
-  ThemeTypings,
   Tr,
   useDisclosure,
 } from '@chakra-ui/react';
+import { StatusBadge } from '@components';
 import { StringHelper } from '@helpers';
 import { RootState } from '@redux';
 import moment from 'moment';
@@ -45,15 +43,6 @@ const InfoCard = () => {
   }
 
   const course = courseClass.course!;
-  const status = UMDomainEnumsCourseClassECourseClassStatus[
-    courseClass.status!
-  ] as keyof typeof UMDomainEnumsCourseClassECourseClassStatus;
-  const statusBadgeMap: Record<typeof status, ThemeTypings['colorSchemes']> = {
-    Active: 'green',
-    Draft: 'gray',
-    Finished: 'blackAlpha',
-  };
-
   const info: { header: string; label?: string | JSX.Element }[] = [
     {
       header: 'Course',
@@ -65,7 +54,7 @@ const InfoCard = () => {
     },
     {
       header: 'Status',
-      label: <Badge colorScheme={statusBadgeMap[status]}>{status}</Badge>,
+      label: <StatusBadge status={courseClass.status!} />,
     },
     {
       header: 'Academic year',
