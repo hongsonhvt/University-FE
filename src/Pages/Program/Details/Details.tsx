@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Actions } from './Actions';
 import { InfoCard } from './InfoCard';
+import { CourseList } from './CourseList';
 
 const ProgramDetails = () => {
   const program = useSelector((s: RootState) => s.programDetails.program);
@@ -39,6 +40,10 @@ const ProgramDetails = () => {
         <Grid rowGap={3}>
           <GridItem>
             <InfoCard program={program!} />
+          </GridItem>
+
+          <GridItem>
+            <CourseList courses={program?.courses} />
           </GridItem>
         </Grid>
       </BackToPage>

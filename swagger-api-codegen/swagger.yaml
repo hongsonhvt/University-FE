@@ -2403,8 +2403,6 @@ components:
           format: uuid
         name:
           type: string
-        programId:
-          type: string
         courseId:
           type: string
       additionalProperties: false

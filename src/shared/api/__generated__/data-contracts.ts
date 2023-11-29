@@ -1056,7 +1056,6 @@ export interface UMApplicationProgramQueriesGetByIdGetByIdDtoCourse {
   /** @format uuid */
   id?: string;
   name?: string;
-  programId?: string;
 }
 
 export interface UMApplicationSessionQueriesGetAllGetAllDto {

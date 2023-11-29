@@ -19,10 +19,12 @@ const InfoCard = ({
   return (
     <Card>
       <CardHeader>
-        <Heading>{program.name}</Heading>
+        <Heading>
+          {program.name} ({program.programId})
+        </Heading>
       </CardHeader>
 
-      <CardBody>
+      {/* <CardBody>
         <Stack divider={<StackDivider />} spacing='4'>
           <Box>
             <Heading size='xs' textTransform='uppercase'>
@@ -33,7 +35,7 @@ const InfoCard = ({
             </Text>
           </Box>
         </Stack>
-      </CardBody>
+      </CardBody> */}
     </Card>
   );
 };
