@@ -20,7 +20,12 @@ export const authSlice = createSlice({
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${actions.payload}`;
-      localStorage.setItem(LocalStorageConstant.token, actions.payload);
+
+      if (actions.payload) {
+        localStorage.setItem(LocalStorageConstant.token, actions.payload);
+      } else {
+        localStorage.removeItem(LocalStorageConstant.token);
+      }
 
       state.token = actions.payload;
     },
