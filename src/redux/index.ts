@@ -6,5 +6,6 @@ export * from './feature/courseListSlice';
 export * from './feature/managementClassListSlice';
 export * from './feature/programDetailsSlice';
 export * from './feature/programListSlice';
+export * from './feature/studentListSlice';
 export * from './store';
 export * from './states';

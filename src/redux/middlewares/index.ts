@@ -6,3 +6,4 @@ export * from './courseListMiddleware';
 export * from './managementClassListMiddleware';
 export * from './programDetailsMiddleware';
 export * from './programListMiddleware';
+export * from './studentListMiddleware';

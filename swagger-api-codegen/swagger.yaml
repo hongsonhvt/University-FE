@@ -1225,6 +1225,18 @@ paths:
       tags:
         - Student
       operationId: Import
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                File:
+                  type: string
+                  format: binary
+            encoding:
+              File:
+                style: form
       responses:
         '200':
           description: Success

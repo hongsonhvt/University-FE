@@ -7,6 +7,7 @@ import courseListReducer from './feature/courseListSlice';
 import managementClassListReducer from './feature/managementClassListSlice';
 import programDetailsReducer from './feature/programDetailsSlice';
 import programListReducer from './feature/programListSlice';
+import studentListReducer from './feature/studentListSlice';
 import {
   authMiddleware,
   courseClassDetailsMiddleware,
@@ -16,6 +17,7 @@ import {
   managementClassListMiddleware,
   programDetailsMiddleware,
   programListMiddleware,
+  teacherListMiddleware,
 } from './middlewares';
 import {
   AuthState,
@@ -26,6 +28,7 @@ import {
   ManagementClassListState,
   ProgramDetailsState,
   ProgramListState,
+  StudentListState,
 } from './states';
 
 export const store = configureStore({
@@ -38,17 +41,19 @@ export const store = configureStore({
     managementClassList: managementClassListReducer,
     programDetails: programDetailsReducer,
     programList: programListReducer,
+    studentList: studentListReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(
       authMiddleware.middleware,
       courseClassDetailsMiddleware.middleware,
       courseClassListMiddleware.middleware,
-      courseListMiddleware.middleware,
       courseDetailsMiddleware.middleware,
+      courseListMiddleware.middleware,
       managementClassListMiddleware.middleware,
+      programDetailsMiddleware.middleware,
       programListMiddleware.middleware,
-      programDetailsMiddleware.middleware
+      studentListMiddleware.middleware,
     ),
 });
 
@@ -57,10 +62,11 @@ export type RootState = ReturnType<
     auth: AuthState;
     courseClassDetails: CourseClassDetailsState;
     courseClassList: CourseClassListState;
-    courseList: CourseListState;
     courseDetails: CourseDetailsState;
+    courseList: CourseListState;
     managementClassList: ManagementClassListState;
-    programList: ProgramListState;
     programDetails: ProgramDetailsState;
+    programList: ProgramListState;
+    studentList: StudentListState;
   }
 >;

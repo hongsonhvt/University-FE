@@ -9,8 +9,8 @@
  * ---------------------------------------------------------------
  */
 
-import { GetScoreData, GetStudentData, GetStudentParams, ImportData } from "./data-contracts";
-import { HttpClient, RequestParams } from "./http-client";
+import { GetScoreData, GetStudentData, GetStudentParams, ImportData, ImportPayload } from "./data-contracts";
+import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class Student<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
@@ -50,10 +50,12 @@ export class Student<SecurityDataType = unknown> extends HttpClient<SecurityData
    * @request POST:/Student/import
    * @response `200` `ImportData` Success
    */
-  import = (params: RequestParams = {}) =>
+  import = (data: ImportPayload, params: RequestParams = {}) =>
     this.request<ImportData>({
       path: `/Student/import`,
       method: "POST",
+      body: data,
+      type: ContentType.FormData,
       ...params,
     });
 }

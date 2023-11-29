@@ -134,6 +134,11 @@ export interface GetTeacherParams {
 
 export type ImportData = UMApplicationCommonModelsResultSystemBoolean;
 
+export interface ImportPayload {
+  /** @format binary */
+  File?: File;
+}
+
 export type LoginData = UMApplicationCommonModelsResultUMDomainDtosGeneratedToken;
 
 export type PatchAccountData = UMApplicationCommonModelsResultUMApplicationAccountQueriesGetByIdGetByIdDto;

@@ -6,6 +6,7 @@ const validRoutes = [
   '/course-class',
   '/management-class',
   '/score',
+  '/student',
 ] as const;
 
 export type ValidRoutes = (typeof validRoutes)[number];

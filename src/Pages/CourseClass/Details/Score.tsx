@@ -111,8 +111,8 @@ const Score = () => {
             <Tr>
               <Th>#</Th>
               <Th>First name</Th>
-              <Th>Last name</Th>
               <Th>Middle name</Th>
+              <Th>Last name</Th>
               <Th>Gender</Th>
               <Th>Management class</Th>
               <Th>Number score</Th>
