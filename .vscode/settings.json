@@ -1,0 +1,22 @@
+{
+  "cSpell.words": [
+    "acacode",
+    "Chakra",
+    "dayzed",
+    "Googleclassroom",
+    "reduxjs",
+    "uidotdev",
+    "usehooks",
+    "varnames"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.format.semicolons": "insert",
+  "editor.formatOnType": false,
+}

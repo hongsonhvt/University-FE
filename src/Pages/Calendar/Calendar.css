@@ -1,0 +1,10 @@
+/* Height of cells */
+.e-schedule .e-schedule-table .e-work-cells,
+.e-schedule .e-schedule-table .e-time-slots {
+  height: 40px !important;
+}
+
+/* Use pointer for appointment */
+.e-schedule .e-appointment {
+  cursor: pointer !important;
+}
